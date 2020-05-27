@@ -99,7 +99,7 @@ Controller.list = (req,res)=> {
             });
         });
     }else{
-        res.send('Please login to view this page!');
+        res.redirect('/');
     }
 };
 

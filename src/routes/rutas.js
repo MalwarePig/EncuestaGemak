@@ -35,6 +35,7 @@ router.post('/AddUser', UserController.save);
 //Carga pagina principal
 router.get('/home', OTController.list);
 
+
 /////////////////////////////////////////////////////////////////////////// ENTRAR A cPlaner /////////////////////////////////////////////////////////////////////////////
 router.get('/cPlaner', function(request, response) {
 	if (request.session.loggedin) {
