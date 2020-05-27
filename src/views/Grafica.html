@@ -1,0 +1,95 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title >
+       GEMAK
+    </title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <%- include ('partials/head.html') %> <!------incluir cabezera navegacion----->
+   
+    <link href='https://fonts.googleapis.com/css?family=Lato:400,300,700' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/css?family=Raleway:400,300,600,800,900" rel="stylesheet" type="text/css">
+
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/pupop.css">
+    <script type="text/javascript" src="js/MaquinasFiltradas.js"></script>
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+     google.charts.load("current", {packages:["corechart"]});
+     google.charts.setOnLoadCallback(drawChart);
+
+      var Activos;
+      var Vencidos;
+      var total;
+        
+    /////////////////////////////////////// TOMA DE ELEMENTOS DE TABAL ////////////////////////////////
+      function getTabla(){
+
+        tabla = document.getElementById("GraficaTabla");
+        var total = tabla.rows.length//Total de filas
+        for(j=1;j<=total-1;j++){//filas
+
+                 Activos = tabla.rows[j].cells[0].childNodes[0].nodeValue;
+                 Vencidos = tabla.rows[j].cells[1].childNodes[0].nodeValue;
+                 total = tabla.rows[j].cells[2].childNodes[0].nodeValue;
+                //alert(total);
+        }
+      }
+      /////////////////////////////////////////////////////////////////////////////////////////////////////
+      
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Task', 'Hours per Day'],
+          ['Activos',    Number(Activos)],
+          ['Vencidos',      Number(Vencidos)],
+     
+        ]);
+
+        var options = {
+          title: 'Estatus de activaciones',
+          pieHole: 0.4,
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+        chart.draw(data, options);
+      }
+
+      
+    </script>
+
+  </head>
+  <body onload="getTabla()">
+    <%- include ('partials/navegacion.html')%>    
+
+<!-------------------------- GRAFICA --------------------------------------------------->
+    <div id="SpaceTimeLine" class="SpaceWork">
+      <div id="donutchart" style="width: 900px; height: 500px;"></div>
+    </div>
+<!--------------------------------- TABLA MAQUINAS -------------------------------------->
+<div class="SpaceWork" id="CMaquinasTabla" visibility: hidden>
+  <table class="table table-bordered table-hover" id="GraficaTabla" name = "GraficaTabla" >
+    <thead> 
+      <tr>
+        <th>Activos</th>
+        <th>Vencidos</th>
+        <th>Total</th>
+      </tr>
+    </thead>
+    <tbody> 
+          <tr>
+            <td id="Activos"><%= Estadistica.Activos %></td>
+            <td id="Vencidos"><%= Estadistica.Vencidos %></td>
+            <td id="Total"><%= Estadistica.Total %></td>
+          </tr>
+    </tbody>
+  </table>
+</div>
+
+
+  </body>
+</html>

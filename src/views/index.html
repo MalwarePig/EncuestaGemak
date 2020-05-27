@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+        <head>
+                <meta charset="utf-8">
+                <meta http-equiv="x-ua-compatible" content="ie=edge">
+                <title >
+                    FCFM
+                </title>
+                <meta name="description" content="">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+                <%- include ('partials/head.html') %> <!------incluir cabezera navegacion----->
+               
+                <link href='https://fonts.googleapis.com/css?family=Lato:400,300,700' rel='stylesheet' type='text/css'>
+                <link href="https://fonts.googleapis.com/css?family=Raleway:400,300,600,800,900" rel="stylesheet" type="text/css">
+
+
+                <!--<link rel="icon" type="image/ico" href="/src/public/icon/Gemak.ico" />-->
+                <link rel="stylesheet" href="css/style.css">
+        </head>
+    <body>
+
+            <%- include ('partials/navegacion.html') %> <!------incluir navegacion Menu----->
+
+
+
+
+        <!-- ----------------------------------------------------------------------------- TARjETAS -------------------------------------------------------------------------------->
+    <!------------------------------ TABLA-------------------------------------->
+    <div class="SpaceWork">
+        <table class="table table-bordered table-hover" id="OTRegistros">
+          <thead> 
+            <tr>
+              <th>N°</th>
+              <th>Nombre</th>
+              <th>Apellido</th>
+              <th>Serie</th>
+              <th>Estatus</th>
+              <th>Vencimiento</th>
+              <th>Acción</th>
+            </tr>
+          </thead>
+          <tbody> 
+            <% if (data) { %>
+              <% for(var i = 0; i < data.length; i++) { %>
+                <tr>
+                  <td id="indice"><%= (i + 1) %></td>
+                  <td id="Nombre"><%= data[i].nombre %></td>
+                  <td id="Apellido"><%= data[i].apellido %></td>
+                  <td id="Serie"><%= data[i].serie %></td>
+                  <td id="Estatus"><%= data[i].Estatus %></td>
+                  <td id="Vencimiento"><%= data[i].Vencimiento %></td>
+                  <td>
+                    <a href="/update/<%= data[i].id %>" class="btn btn-info">Activar/Vencer</a>
+                    <a href="/delete/<%= data[i].id %>" class="btn btn-danger">Eliminar</a>
+                  </td>
+                </tr>
+              <% } %>
+            <% } %>
+          </tbody>
+        </table>
+     </div>
+  
+       <!-- ---------------------------------------------------------------------- CONTADOR ORDENES -------------------------------------------------------------------------------->
+<section id="counting_sec">
+        <div class="container">
+            <div class="row">	
+              <% if (data) { %>
+
+             
+                <div class="col-lg-2 col-md-3 col-sm-6 col-xs-12">
+                </div>		
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    <div class="counting_sl">
+                    <i class="fas fa-wrench"></i>
+                    <h2 class="counter"><%= Estadistica.Activos %></h2>
+                    <h4>Lineas Activas</h4>	
+                    </div>
+                </div>			
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    <div class="counting_sl">
+                    <i class="fas fa-skull-crossbones"></i>
+                    <h2 class="counter"><%= Estadistica.Vencidos %></h2>
+                    <h4>Vencidas</h4>	
+                    </div>
+                </div>			
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    <div class="counting_sl">
+                        <i class="fas fa-business-time"></i>
+                    <h2 class="counter"><%= Estadistica.Total %></h2>
+                    <h4>Total</h4>	
+                    </div>
+                </div>			
+                <% } %>
+            </div>					
+        </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </body>        
+</html>
