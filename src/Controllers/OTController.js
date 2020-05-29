@@ -55,10 +55,12 @@ Controller.sincronizar = (req,res) => {
                 res.json(err);
                 console.log('error de sincronizacion');
             }
-            console.log("Numero serie respuesta " + tarjetas[0].serie);
+            if(tarjetas[0].serie != null){
+                console.log("Numero serie respuesta " + tarjetas[0].serie);
                 req.getConnection((err,conn) => {
                     res.json({serie:tarjetas[0].serie, estatus:tarjetas[0].Estatus});
                 })
+            }
             });
         });
 };
