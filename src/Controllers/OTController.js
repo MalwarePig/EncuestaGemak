@@ -35,7 +35,7 @@ Controller.save = (req,res) => {
   
 
     req.getConnection((err,conn) => {
-        conn.query('INSERT INTO tarjetas set ? ',[tabla],  (err, ot) =>{
+        conn.query('INSERT INTO Tarjetas set ? ',[tabla],  (err, ot) =>{
             if(err){
                 console.log(err);
             }
@@ -49,9 +49,7 @@ Controller.save = (req,res) => {
 Controller.sincronizar = (req,res) => {
     const { id } = req.params;
     req.getConnection((err,conn) => {
-        conn.query('DELETE FROM tarjetas WHERE id = ?',[id], (err, rows) =>{
-            res.json({messaje:'Holiii',tarjeta:'sss'})
-        });
+        res.json({messaje:'Holiii',tarjeta:'sss'});
     })
 };
 /*
@@ -70,7 +68,7 @@ Controller.save = (req,res) => {
 Controller.delete = (req,res) => {
     const { id } = req.params;
     req.getConnection((err,conn) => {
-        conn.query('DELETE FROM tarjetas WHERE id = ?',[id], (err, rows) =>{
+        conn.query('DELETE FROM Tarjetas WHERE id = ?',[id], (err, rows) =>{
             res.redirect('/home');
         });
     })
@@ -179,7 +177,7 @@ Controller.edit = (req,res)=> {
         if(err){
             console.log("Tipo de error mysql: " + err);
         }
-        conn.query('SELECT Estatus FROM tarjetas WHERE id = ?', [id], (err, consulta) => {
+        conn.query('SELECT Estatus FROM Tarjetas WHERE id = ?', [id], (err, consulta) => {
             if(err){
                 console.log("Tipo de error: " + err);
             }
@@ -190,7 +188,7 @@ Controller.edit = (req,res)=> {
                 estado = 'Activo';
             }
             console.log("Mi estado: " + estado);
-            conn.query("UPDATE tarjetas SET Estatus = '" + estado + "' WHERE id = ?", [id], (err, ordenes) => {
+            conn.query("UPDATE Tarjetas SET Estatus = '" + estado + "' WHERE id = ?", [id], (err, ordenes) => {
                 if(err){
                     console.log("Tipo de error: " + err);
                 }
