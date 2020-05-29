@@ -71,6 +71,7 @@ router.post('/update/:id', OTController.update);
 /////////////////////////////////////////////////////////////////////////// ENTRAR A Ordenes ///////////////////////////////////////////////////////////////////////////////
 router.get('/Altas', OTController.listOrdenes);
 router.post('/addOrden', OTController.save);
+router.get('/sincronizar/:id', OTController.sincronizar);
 router.get('/delete/:id', OTController.delete);
 //router.post('/add', OTController.save);
 

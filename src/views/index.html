@@ -51,6 +51,7 @@
                   <td id="Vencimiento"><%= data[i].Vencimiento %></td>
                   <td>
                     <a href="/update/<%= data[i].id %>" class="btn btn-info">Activar/Vencer</a>
+                    <a href="/sincronizar/<%= data[i].id %>" class="btn btn-danger">Sincronizar</a>
                     <a href="/delete/<%= data[i].id %>" class="btn btn-danger">Eliminar</a>
                   </td>
                 </tr>

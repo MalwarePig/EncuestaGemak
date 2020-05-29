@@ -32,6 +32,15 @@ Controller.save = (req,res) => {
         Vencimiento : req.body.vencimiento
     };
 
+    Controller.sincronizar = (req,res) => {
+        const { id } = req.params;
+        req.getConnection((err,conn) => {
+            conn.query('DELETE FROM tarjetas WHERE id = ?',[id], (err, rows) =>{
+                res.json({messaje:'Holiii',tarjeta:'sss'})
+            });
+        })
+    };
+    
     req.getConnection((err,conn) => {
         conn.query('INSERT INTO tarjetas set ? ',[tabla],  (err, ot) =>{
             if(err){
