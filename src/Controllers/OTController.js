@@ -32,15 +32,8 @@ Controller.save = (req,res) => {
         Vencimiento : req.body.vencimiento
     };
 
-    Controller.sincronizar = (req,res) => {
-        const { id } = req.params;
-        req.getConnection((err,conn) => {
-            conn.query('DELETE FROM tarjetas WHERE id = ?',[id], (err, rows) =>{
-                res.json({messaje:'Holiii',tarjeta:'sss'})
-            });
-        })
-    };
-    
+  
+
     req.getConnection((err,conn) => {
         conn.query('INSERT INTO tarjetas set ? ',[tabla],  (err, ot) =>{
             if(err){
@@ -53,7 +46,14 @@ Controller.save = (req,res) => {
   /*console.log(req.body);//se obtienen los datos del formulario a traves del req.body
     res.send('works');*/
 }
-
+Controller.sincronizar = (req,res) => {
+    const { id } = req.params;
+    req.getConnection((err,conn) => {
+        conn.query('DELETE FROM tarjetas WHERE id = ?',[id], (err, rows) =>{
+            res.json({messaje:'Holiii',tarjeta:'sss'})
+        });
+    })
+};
 /*
 Controller.save = (req,res) => {
     const data = req.body;
