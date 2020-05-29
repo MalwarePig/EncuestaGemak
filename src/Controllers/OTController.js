@@ -48,9 +48,19 @@ Controller.save = (req,res) => {
 }
 Controller.sincronizar = (req,res) => {
     const { id } = req.params;
+    console.log("serie de parametro: " + id);
     req.getConnection((err,conn) => {
-        res.json({messaje:'Holiii',tarjeta:'sss'});
-    })
+        conn.query("SELECT serie,Estatus FROM Tarjetas WHERE serie = '"+ id + "'",(err, tarjetas) =>{
+            if(err){
+                res.json(err);
+                console.log('error de sincronizacion');
+            }
+            console.log("Numero serie respuesta " + tarjetas[0].serie);
+                req.getConnection((err,conn) => {
+                    res.json({serie:tarjetas[0].serie, estatus:tarjetas[0].Estatus});
+                })
+            });
+        });
 };
 /*
 Controller.save = (req,res) => {
