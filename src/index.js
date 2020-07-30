@@ -32,8 +32,6 @@ app.use(session({
 
 app.use(express.urlencoded({extended: false}));//para que el servidor entienda los datos del navegador al hacer un guardado de formulario
 
-
-
 //routes o urls
 app.use(require('./routes/rutas.js'));//usar las rutas
 

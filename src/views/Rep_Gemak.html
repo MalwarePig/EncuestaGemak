@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>
+    GEMAK
+  </title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <%- include ('partials/head.html') %>
+  <!------incluir cabezera navegacion----->
+  <script type="text/javascript" src="js/xlsxfullmin.js"></script>
+  <script type="text/javascript" src="js/FileSaver.js"></script>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,300,700' rel='stylesheet' type='text/css'>
+  <link href="https://fonts.googleapis.com/css?family=Raleway:400,300,600,800,900" rel="stylesheet" type="text/css">
+
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
+  <link rel="stylesheet" href="css/style.css">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js"></script>
+  <script type="text/javascript" src="js/Reporte.js"></script>
+
+</head>
+
+<body onload="Tabla()">
+  <div>
+    <img src="images/Gemak-Mini.png" class="rounded float-left" alt="...">
+    <img src="images/Covid-Mini.jpg" class="rounded float-right" alt="...">
+  </div>
+
+  <!------------------------------ TABLA-------------------------------------->
+  <div class="container-fluid shadow-lg p-3 mb-5 bg-white rounded">
+    <table class="table table-condensed table-hover" id="Registros">
+      <thead>
+        <tr>
+          <th>Aceptable</th>
+          <th>Nombre</th>
+          <th>Nomina</th>
+          <th>Planta</th>
+          <th>Motivo</th>
+          <th>Fecha</th>
+        </tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </table>
+    <button type="button" class="btn btn-secondary" id="ButtonDownload"   data-target="#exampleModal"
+    data-toggle="modal">Descargar</button>
+  </div>
+
+  <script>
+    var tabla = document.getElementById("Registros");
+      var wb = XLSX.utils.table_to_book(tabla, { sheet: "Reporte" });
+      var wbout = XLSX.write(wb, { bookType: 'xlsx', bookSST: true, type: 'binary' });
+      function s2ab(s) {
+        var buf = new ArrayBuffer(s.length);
+        var view = new Uint8Array(buf);
+        for (var i = 0; i < s.length; i++) view[i] = s.charCodeAt(i) & 0xFF;
+        return buf;
+      }     
+      $("#ButtonDownload").click(function () {
+        saveAs(new Blob([s2ab(wbout)], { type: "application/octet-stream" }), 'Reporte_Covid.xlsx');
+      });
+  </script>
+</body>
+
+</html>
+
+
+
+<!--
+ <script>
+    var wb = XLSX.utils.book_new();
+    wb.Props = {
+      Title: "SheetJS Tutorial",
+      Subject: "Test",
+      Author: "Red Stapler",
+      CreatedDate: new Date(2017, 12, 19)
+    };
+    wb.SheetNames.push("Test Sheet");
+    var ws_data = [['hello', 'world']];  //a row with 2 columns
+    var ws = XLSX.utils.aoa_to_sheet(ws_data);
+    wb.Sheets["Test Sheet"] = ws;
+    var wbout = XLSX.write(wb, { bookType: 'xlsx', type: 'binary' });
+    function s2ab(s) {
+      var buf = new ArrayBuffer(s.length); //convert s to arrayBuffer
+      var view = new Uint8Array(buf);  //create uint8array as viewer
+      for (var i = 0; i < s.length; i++) view[i] = s.charCodeAt(i) & 0xFF; //convert to octet
+      return buf;
+    }
+    $("#button-a").click(function () {
+      saveAs(new Blob([s2ab(wbout)], { type: "application/octet-stream" }), 'test.xlsx');
+    });    
+  </script>
+
+
+
+
+-->

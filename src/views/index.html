@@ -1,119 +1,314 @@
 <!DOCTYPE html>
 <html>
-        <head>
-                <meta charset="utf-8">
-                <meta http-equiv="x-ua-compatible" content="ie=edge">
-                <title >
-                    FCFM
-                </title>
-                <meta name="description" content="">
-                <meta name="viewport" content="width=device-width, initial-scale=1">
-                <%- include ('partials/head.html') %> <!------incluir cabezera navegacion----->
-               
-                <link href='https://fonts.googleapis.com/css?family=Lato:400,300,700' rel='stylesheet' type='text/css'>
-                <link href="https://fonts.googleapis.com/css?family=Raleway:400,300,600,800,900" rel="stylesheet" type="text/css">
 
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>
+    Gemak
+  </title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <%- include ('partials/head.html') %>
+  <!------incluir cabezera navegacion----->
 
-                <!--<link rel="icon" type="image/ico" href="/src/public/icon/Gemak.ico" />-->
-                <link rel="stylesheet" href="css/style.css">
-        </head>
-    <body>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,300,700' rel='stylesheet' type='text/css'>
+  <link href="https://fonts.googleapis.com/css?family=Raleway:400,300,600,800,900" rel="stylesheet" type="text/css">
 
-            <%- include ('partials/navegacion.html') %> <!------incluir navegacion Menu----->
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <!--<link rel="icon" type="image/ico" href="/src/public/icon/Gemak.ico" />-->
+  <link rel="stylesheet" href="css/style.css">
+  <script type="text/javascript" src="js/Encuesta.js"></script>
+</head>
 
+<body>
+  <div>
+    <img src="images/Gemak-Mini.png" class="rounded float-left" alt="...">
+    <img src="images/Covid-Mini.jpg" class="rounded float-right" alt="...">
+  </div>
+  <br />
+  <div class="container">
+    <section class="row">
+      <div class="col-md-12">
+        <h1 class="text-center">Formato de Encuesta de prevención.</h1>
+        <p class="text-center">GEMAK SA de CV</p>
+      </div>
+    </section>
+    <hr><br />
+    <section class="row">
+      <section class="col-md-12">
+        <h3>Datos basicos</h3>
+        <p></p>
+      </section>
+    </section>
+    <form action="" id="Formualario">
+      <section class="row">
+        <section class="col-md-12">
+          <section class="row">
+          </section>
+          <section class="row">
+            <div class="col-md-8">
+              <div class="form-group">
+                <label for="Nombre">Nombre Completo: *</label>
+                <input type="text" class="form-control" id="Nombre" maxlength="128" placeholder="Nombre Completo"
+                  required>
+              </div>
+            </div>
 
-        <!-- ----------------------------------------------------------------------------- TARjETAS -------------------------------------------------------------------------------->
-    <!------------------------------ TABLA-------------------------------------->
-    <div class="SpaceWork">
-        <table class="table table-bordered table-hover" id="OTRegistros">
-          <thead> 
-            <tr>
-              <th>N°</th>
-              <th>Nombre</th>
-              <th>Apellido</th>
-              <th>Serie</th>
-              <th>Estatus</th>
-              <th>Vencimiento</th>
-              <th>Acción</th>
-            </tr>
-          </thead>
-          <tbody> 
-            <% if (data) { %>
-              <% for(var i = 0; i < data.length; i++) { %>
-                <tr>
-                  <td id="indice"><%= (i + 1) %></td>
-                  <td id="Nombre"><%= data[i].nombre %></td>
-                  <td id="Apellido"><%= data[i].apellido %></td>
-                  <td id="Serie"><%= data[i].serie %></td>
-                  <td id="Estatus"><%= data[i].Estatus %></td>
-                  <td id="Vencimiento"><%= data[i].Vencimiento %></td>
-                  <td>
-                    <a href="/update/<%= data[i].id %>" class="btn btn-info">Activar/Vencer</a>
-                    <a href="/sincronizar/<%= data[i].serie %>" class="btn btn-danger">Sincronizar</a>
-                    <a href="/delete/<%= data[i].id %>" class="btn btn-danger">Eliminar</a>
-                  </td>
-                </tr>
-              <% } %>
-            <% } %>
-          </tbody>
-        </table>
-     </div>
-  
-       <!-- ---------------------------------------------------------------------- CONTADOR ORDENES -------------------------------------------------------------------------------->
-<section id="counting_sec">
-        <div class="container">
-            <div class="row">	
-              <% if (data) { %>
+            <div class="col-md-4">
+              <div class="form_group">
+                <label for="nomina">No. Nómina: *</label>
+                <input type="number" class="form-control" id="Nomina" placeholder="Número de nómina" maxlength="15"
+                  required />
+              </div>
+            </div>
+          </section>
+          <section class="row">
+            <div class="col-md-4">
+              <label for="Planta">Planta</label>
+              <select id="Planta" class="form-control">
+                <option>Bravo</option>
+                <option>Morelos</option>
+              </select>
+            </div>
+          </section>
+        </section>
+      </section>
+      <hr />
 
-             
-                <div class="col-lg-2 col-md-3 col-sm-6 col-xs-12">
-                </div>		
-                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                    <div class="counting_sl">
-                    <i class="fas fa-wrench"></i>
-                    <h2 class="counter"><%= Estadistica.Activos %></h2>
-                    <h4>Lineas Activas</h4>	
-                    </div>
-                </div>			
-                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                    <div class="counting_sl">
-                    <i class="fas fa-skull-crossbones"></i>
-                    <h2 class="counter"><%= Estadistica.Vencidos %></h2>
-                    <h4>Vencidas</h4>	
-                    </div>
-                </div>			
-                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                    <div class="counting_sl">
-                        <i class="fas fa-business-time"></i>
-                    <h2 class="counter"><%= Estadistica.Total %></h2>
-                    <h4>Total</h4>	
-                    </div>
-                </div>			
-                <% } %>
-            </div>					
+      <!--  Declaratoria   -->
+      <section class="row">
+        <div class="col-md-8">
+          <p>Las siguientes preguntas deben ser contestadas con honestidad, se trata de tu salud, la de tu familia y
+            compañeros.
+            Tus respuestas serán confidenciales y su uso solo será para salvaguardar el bienestar de todos en la
+            empresa, te recordamos que se tipifica como delito poner en riesgo la salud de los demás en esta pandemia.
+            <strong>¿estás de acuerdo?</strong>
+          </p>
         </div>
-</section>
+        <div class="col-md-2">
+          <label class="radio">
+            <input type="radio" name="Declaratoria" id="Declaratoria" value="Si" required> Si
+          </label>
+        </div>
+        <div class="col-md-2">
+          <label class="radio">
+            <input type="radio" name="Declaratoria" id="Declaratoria" value="No" required> No
+          </label>
+        </div>
+      </section>
+      <br>
+      <br />
 
 
+      <!--  Servicios  -->
+      <section class="row">
+        <div class="col-md-12">
+          <h3>Encuesta.</h3>
+          <p></p>
+        </div>
+      </section>
+      <!--  PREGUNTA 1  -->
+      <section class="row">
+        <div class="col-md-6">
+          <p>1- ¿"Estuviste en contacto con algún caso conocido de COVID-19 en los últimos 15 días?</p>
+        </div>
+        <div class="col-md-2">
+          <label class="radio">
+            <input type="radio" name="pregunta1" id="pregunta1a" value="Si" required> Si
+          </label>
+        </div>
+        <div class="col-md-2">
+          <label class="radio">
+            <input type="radio" name="pregunta1" id="preguntab" value="No" required> No
+          </label>
+        </div>
+      </section>
+      <br>
+      <br />
 
 
+      <!--  PREGUNTA 4  -->
+      <section class="row">
+        <div class="col-md-6">
+          <p>2- ¿"Has presentado el inicio de cualquiera de los síntomas?</p>
+        </div>
+      </section>
+
+      <section class="row">
+        <div class="col-md-2">
+          <label><input type="checkbox" id="cbox1" value="first_checkbox"> Tos</label><br>
+        </div>
+        <div class="col-md-2">
+          <label><input type="checkbox" id="cbox2" value="first_checkbox"> Fiebre</label><br>
+        </div>
+        <div class="col-md-2">
+          <label><input type="checkbox" id="cbox3" value="first_checkbox"> Dificultad al respirar</label><br>
+        </div>
+        <div class="col-md-3">
+          <label><input type="checkbox" id="cbox4" value="first_checkbox"> Perdida del sentido del gusto y/u
+            olfato</label><br>
+        </div>
+        <div class="col-md-2">
+          <label><input type="checkbox" id="cbox5" value="first_checkbox"> Dolor de garganta</label><br>
+        </div>
+        <div class="col-md-12">
+          <br>
+        </div>
+        <div class="col-md-3">
+          <label><input type="checkbox" id="cbox6" value="first_checkbox"> Dolor de cuerpo o debilidad</label><br>
+        </div>
+        <div class="col-md-3">
+          <label><input type="checkbox" id="cbox7" value="first_checkbox"> Dolor de cabeza(no habitual)</label><br>
+        </div>
+      </section>
+      <br>
+      <br />
+
+      <!--  PREGUNTA 2  -->
+      <section class="row">
+        <div class="col-md-6">
+          <p>3- ¿Has viajado fuera de la ciudad en autobus, avión o personas que no viven contígo?</p>
+        </div>
+        <div class="col-md-2">
+          <label class="radio">
+            <input type="radio" name="pregunta2" id="pregunta1a" value="Si" required> Si
+          </label>
+        </div>
+        <div class="col-md-2">
+          <label class="radio">
+            <input type="radio" name="pregunta2" id="preguntab" value="No" required> No
+          </label>
+        </div>
+        <div class="col-md-2">
+          <input type="text" name="preguntaText1" id="pregunta2Text" placeholder="Sí, a dónde?">
+        </div>
+      </section><br>
+      <br />
+
+      <!--  PREGUNTA 3  -->
+      <section class="row">
+        <div class="col-md-6">
+          <p>4- ¿"Has acudido a lugares concurridos recientemente?</p>
+        </div>
+        <div class="col-md-2">
+          <label class="radio">
+            <input type="radio" name="pregunta3" id="pregunta1a" value="Si" required> Si
+          </label>
+        </div>
+        <div class="col-md-2">
+          <label class="radio">
+            <input type="radio" name="pregunta3" id="pregunta1a" value="No" required> No
+          </label>
+        </div>
+        <div class="col-md-1">
+          <input type="text" name="pregunta3Text" id="pregunta3Text" placeholder="Sí, a dónde?">
+        </div>
+      </section>
+      <br>
+      <br />
+
+      <!--  PREGUNTA 5  -->
+      <section class="row">
+        <div class="col-md-6">
+          <p>5- ¿"Has estado en urgencias o has ingresado a un hospital recientemente? si la respuesta es sí, explicar
+            el motivo.</p>
+        </div>
+        <div class="col-md-2">
+          <label class="radio">
+            <input type="radio" name="pregunta5" id="pregunta1a" value="Si" required> Si
+          </label>
+        </div>
+        <div class="col-md-2">
+          <label class="radio">
+            <input type="radio" name="pregunta5" id="preguntab" value="No" required> No
+          </label>
+        </div>
+        <div class="col-md-2">
+          <input type="text" name="pregunta5Text" id="pregunta5Text" placeholder="Motivo">
+        </div>
+      </section>
+    
+  </div>
+</form>
+<button type="submit" class="btn btn-secondary" onclick="GuardarEncuesta()">Guardar</button>
+  <br /><br />
+  <footer class="container">
+    <p>Toda información proporcionada sera confidencial.</p>
+  </footer>
+
+  <!-- Modal Negado-->
+  <div class="modal fade" id="myModalNegado" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-body">
+          TÚ ENTRADA NO ESTA AUTORIZADA A LA PLANTA, favor de ponerte en contacto a RH.
+          <br>
+          Supers. Morelos: 8115821293
+          <br>
+          RH Bravo: 8180290724
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="Reiniciar()">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
 
+  <!-- Modal Preventivo-->
+  <div class="modal fade" id="myModalPreventivo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-body">
+          TU ENTRADA ESTA CONDICIONADA, Favor de comunicarte antes a los siguientes contactos.
+          <br>
+          Supers. Morelos: 8115821293
+          <br>
+          RH Bravo: 8180290724
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="Reiniciar()">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
+  <!-- Modal Autorizado-->
+  <div class="modal fade" id="myModalAcceso" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-body">
+          Acceso autorizado a la planta.
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="Reiniciar()">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
+  <!-- Modal Encuesta Vacia-->
+  <div class="modal fade" id="myModalVacio" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-body">
+          Faltan preguntas por contestar o no se acepto el envio de la encuesta.
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="Reiniciar()">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
+</body>
 
-
-
-
-
-
-
-
-
-
-
-
-
-    </body>        
 </html>
