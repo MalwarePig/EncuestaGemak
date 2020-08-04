@@ -1,12 +1,44 @@
 function GuardarEncuesta() {
      var url = window.location.href;
      var condicion = url.indexOf("EncuestaMorelos");
-     var Area = "Produccion";
+     var Area = "Vacio";
+     var Planta = "Vacio";
      if (condicion > 0) { //si es morelos...
           Planta = "Morelos"
-     }else{
+     } else {
           Planta = "Bravo"
      }
+
+     //=========================================== BUSCAR TRABAJADORES POR NUMERO DE NOMINA =================================================//
+     if (Planta == "Morelos") {
+          $.ajax({
+               url: "/SearchAreaMorelos"+ document.getElementById("Nomina").value,
+               success: function (Area) {
+                   console.log(Area[0].Area);
+                   Area = Area[0].Area;
+                   Guardado(Planta,Area);
+               }//Funcion success
+          });//Ajax 
+     } else {
+          $.ajax({
+               url: "/SearchAreaBravo"+ document.getElementById("Nomina").value,
+               success: function (Area) {
+                   console.log(Area[0].Area);
+                   Area = Area[0].Area;
+                   Guardado(Planta,Area);
+               }//Funcion success
+          });//Ajax 
+     }
+    
+}
+
+
+function Reiniciar() {
+     document.getElementById("Formualario").reset();
+     setTimeout("location.reload()", 1000);
+}
+
+function Guardado(Planta,Area){
 
      let Declaratoria = $('input[name="Declaratoria"]:checked').val();
      let PreguntaUno = $('input[name="pregunta1"]:checked').val();
@@ -77,7 +109,7 @@ function GuardarEncuesta() {
           Acceso = "Negado";
      }
      //======================================================================
-    
+
      if (PreguntaUno == "Si") {
           Acceso = "Negado";
      }
@@ -107,9 +139,9 @@ function GuardarEncuesta() {
           PreguntaCincoText: document.getElementById("pregunta5Text").value,
           Acceso: Acceso,
           Declaratoria: Declaratoria,
-          PreguntaSeis: PreguntaSeis
+          PreguntaSeis: PreguntaSeis,
+          Area : Area
      }
-
 
      $.post("/GuardarEncuesta", // url
           { ObjetoTabla }, // data to be submit
@@ -133,10 +165,4 @@ function GuardarEncuesta() {
           $("#myModalAcceso").modal();
 
      }
-}
-
-
- function Reiniciar(){
-     document.getElementById("Formualario").reset();
-     setTimeout("location.reload()",1000);
 }
