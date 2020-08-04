@@ -1,9 +1,19 @@
 function GuardarEncuesta() {
+     var url = window.location.href;
+     var condicion = url.indexOf("EncuestaMorelos");
+     var Area = "Produccion";
+     if (condicion > 0) { //si es morelos...
+          Planta = "Morelos"
+     }else{
+          Planta = "Bravo"
+     }
+
      let Declaratoria = $('input[name="Declaratoria"]:checked').val();
      let PreguntaUno = $('input[name="pregunta1"]:checked').val();
      let PreguntaDos = $('input[name="pregunta2"]:checked').val();
      let PreguntaTres = $('input[name="pregunta3"]:checked').val();
      let PreguntaCinco = $('input[name="pregunta5"]:checked').val();
+     let PreguntaSeis = $('input[name="pregunta6"]:checked').val();
 
      var chck_TOS = document.getElementById("cbox1");
      var chck_Fiebre = document.getElementById("cbox2");
@@ -30,6 +40,12 @@ function GuardarEncuesta() {
 
      //======================================================================
      if (PreguntaTres == "Si") {
+          Acceso = "Preventivo";
+     }
+     if (chck_Cabeza.checked == true) {
+          Acceso = "Preventivo";
+     }
+     if (PreguntaSeis == "Si") {
           Acceso = "Preventivo";
      }
      //======================================================================
@@ -61,9 +77,7 @@ function GuardarEncuesta() {
           Acceso = "Negado";
      }
      //======================================================================
-     if (chck_Cabeza.checked == true) {
-          Acceso = "Preventivo";
-     }
+    
      if (PreguntaUno == "Si") {
           Acceso = "Negado";
      }
@@ -76,7 +90,7 @@ function GuardarEncuesta() {
      var ObjetoTabla = {
           Nombre: document.getElementById("Nombre").value,
           Nomina: document.getElementById("Nomina").value,
-          Planta: document.getElementById("Planta").value,
+          Planta: Planta,
           PreguntaUno: PreguntaUno,
           PreguntaDos: PreguntaDos,
           PreguntaDosText: document.getElementById("pregunta2Text").value,
@@ -92,7 +106,8 @@ function GuardarEncuesta() {
           PreguntaCinco: PreguntaCinco,
           PreguntaCincoText: document.getElementById("pregunta5Text").value,
           Acceso: Acceso,
-          Declaratoria: Declaratoria
+          Declaratoria: Declaratoria,
+          PreguntaSeis: PreguntaSeis
      }
 
 

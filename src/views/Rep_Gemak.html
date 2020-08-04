@@ -26,10 +26,10 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js"></script>
   <script type="text/javascript" src="js/Reporte.js"></script>
-
 </head>
 
-<body onload="Tabla()">
+<body onload="Modal()">
+
   <div>
     <img src="images/Gemak-Mini.png" class="rounded float-left" alt="...">
     <img src="images/Covid-Mini.jpg" class="rounded float-right" alt="...">
@@ -51,24 +51,55 @@
       <tbody>
       </tbody>
     </table>
-    <button type="button" class="btn btn-secondary" id="ButtonDownload"   data-target="#exampleModal"
-    data-toggle="modal">Descargar</button>
+    <button type="button" class="btn btn-secondary" id="ButtonDownload" data-target="#exampleModal"
+      data-toggle="modal">Descargar</button>
   </div>
+
+
+
+
+  <!-- Modal -->
+<div class="modal fade" id="ModalSection" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Reporte encuesta COVID-19</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="col-md-5">
+          <label for="Area">Area</label>
+          <select id="Area" class="form-control">
+            <option>Produccion</option>
+            <option>Administrativa</option>
+          </select>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="Tabla()">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 
   <script>
     var tabla = document.getElementById("Registros");
-      var wb = XLSX.utils.table_to_book(tabla, { sheet: "Reporte" });
-      var wbout = XLSX.write(wb, { bookType: 'xlsx', bookSST: true, type: 'binary' });
-      function s2ab(s) {
-        var buf = new ArrayBuffer(s.length);
-        var view = new Uint8Array(buf);
-        for (var i = 0; i < s.length; i++) view[i] = s.charCodeAt(i) & 0xFF;
-        return buf;
-      }     
-      $("#ButtonDownload").click(function () {
-        saveAs(new Blob([s2ab(wbout)], { type: "application/octet-stream" }), 'Reporte_Covid.xlsx');
-      });
+    var wb = XLSX.utils.table_to_book(tabla, { sheet: "Reporte" });
+    var wbout = XLSX.write(wb, { bookType: 'xlsx', bookSST: true, type: 'binary' });
+    function s2ab(s) {
+      var buf = new ArrayBuffer(s.length);
+      var view = new Uint8Array(buf);
+      for (var i = 0; i < s.length; i++) view[i] = s.charCodeAt(i) & 0xFF;
+      return buf;
+    }
+    $("#ButtonDownload").click(function () {
+      saveAs(new Blob([s2ab(wbout)], { type: "application/octet-stream" }), 'Reporte_Covid.xlsx');
+    });
   </script>
+
+
 </body>
 
 </html>

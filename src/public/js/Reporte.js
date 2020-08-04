@@ -2,10 +2,12 @@
 function Tabla() {
     var Planta = window.location.href;
     var condicion = Planta.indexOf("ReporteM");
+    let Area = document.getElementById("Area").value;
+    alert(Area);
 
     if (condicion > 0) { //si es morelos...
         $.ajax({
-            url: '/TablaM',
+            url: "/TablaM/"+Area,
             success: function (data) {
 
                 for (var i = 0; i < data.length; i++) {
@@ -162,7 +164,7 @@ function Tabla() {
             }//Funcion success
         })
     }//if Morelos
-    else{//si es Bravo
+    else {//si es Bravo
         $.ajax({
             url: '/TablaB',
             success: function (data) {
@@ -355,3 +357,8 @@ function Color() {
     }
 }
 
+function Modal() {
+    $("#ModalSection").modal();
+    //document.getElementById("Formualario").reset();
+    //setTimeout("location.reload()", 3000);
+}

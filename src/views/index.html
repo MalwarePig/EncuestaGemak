@@ -66,7 +66,7 @@
               </div>
             </div>
           </section>
-          <section class="row">
+          <section class="row" hidden>
             <div class="col-md-4">
               <label for="Planta">Planta</label>
               <select id="Planta" class="form-control">
@@ -81,7 +81,7 @@
 
       <!--  Declaratoria   -->
       <section class="row">
-        <div class="col-md-8">
+        <div class="col-md-7">
           <p>Las siguientes preguntas deben ser contestadas con honestidad, se trata de tu salud, la de tu familia y
             compañeros.
             Tus respuestas serán confidenciales y su uso solo será para salvaguardar el bienestar de todos en la
@@ -101,8 +101,6 @@
         </div>
       </section>
       <br>
-      <br />
-
 
       <!--  Servicios  -->
       <section class="row">
@@ -167,11 +165,30 @@
       </section>
       <br>
       <br />
-
+      
       <!--  PREGUNTA 2  -->
       <section class="row">
         <div class="col-md-6">
-          <p>3- ¿Has viajado fuera de la ciudad en autobus, avión o personas que no viven contígo?</p>
+          <p>3- ¿Vives con algun familiar que tiene sintomas sospechosos?</p>
+        </div>
+        <div class="col-md-2 m-3">
+          <label class="radio">
+            <input type="radio" name="pregunta6" id="pregunta1a" value="Si" required> Si
+          </label>
+        </div>
+        <div class="col-md-2 m-3">
+          <label class="radio">
+            <input type="radio" name="pregunta6" id="preguntab" value="No" required> No
+          </label>
+        </div>
+      </section><br>
+      <br />
+
+
+      <!--  PREGUNTA 3  -->
+      <section class="row">
+        <div class="col-md-6">
+          <p>4- ¿Has viajado fuera de la ciudad en autobus, avión o personas que no viven contígo?</p>
         </div>
         <div class="col-md-2 m-3">
           <label class="radio">
@@ -189,10 +206,10 @@
       </section><br>
       <br />
 
-      <!--  PREGUNTA 3  -->
+      <!--  PREGUNTA 4  -->
       <section class="row">
         <div class="col-md-6">
-          <p>4- ¿"Has acudido a lugares concurridos recientemente?</p>
+          <p>5- ¿"Has acudido a lugares concurridos recientemente?</p>
         </div>
         <div class="col-md-2 m-3">
           <label class="radio">
@@ -214,7 +231,7 @@
       <!--  PREGUNTA 5  -->
       <section class="row">
         <div class="col-md-6">
-          <p>5- ¿"Has estado en urgencias o has ingresado a un hospital recientemente? si la respuesta es sí, explicar
+          <p>6- ¿"Has estado en urgencias o has ingresado a un hospital recientemente? si la respuesta es sí, explicar
             el motivo.</p>
         </div>
         <div class="col-md-2 m-3">
@@ -227,19 +244,19 @@
             <input type="radio" name="pregunta5" id="preguntab" value="No" required> No
           </label>
         </div>
-        <div class="col-md-2">
+        <div class="col-md-1">
           <input type="text" name="pregunta5Text" id="pregunta5Text" placeholder="Motivo">
         </div>
       </section>
-    
+
   </div>
-</form>
-<br /><br />
-<div class="form-row text-center">
-  <div class="col-12">
-    <button type="submit" class="btn btn-secondary" onclick="GuardarEncuesta()">Guardar</button>
+  </form>
+  <br /><br />
+  <div class="form-row text-center">
+    <div class="col-12">
+      <button type="submit" class="btn btn-secondary" onclick="GuardarEncuesta()">Guardar</button>
+    </div>
   </div>
-</div>
 
   <br /><br />
   <footer class="container">

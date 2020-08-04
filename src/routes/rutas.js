@@ -6,10 +6,16 @@ const EncuestaController = require('../Controllers/EncuestaController');
 
 /////////////////////////////////////////////////////////////////////////// USUARIOS /////////////////////////////////////////////////////////////////////////////////
 //Acceder a login
-var reinicio = router.get('/', (req, res) => {
+var reinicio = router.get('/EncuestaMorelos', (req, res) => {
     //res.send('holoo');
     res.render('index.html');
 });
+
+var reinicio = router.get('/EncuestaBravo', (req, res) => {
+    //res.send('holoo');
+    res.render('index.html');
+});
+
 
 //Iniciar logueo
 router.post('/Login', UserController.login);
@@ -44,8 +50,8 @@ router.get('/Admin', (req, res) => {
 /////////////////////////////////////////////////////////////////////////// MENU ADMIN //////////////////////////////////////////////////////////////////////////////
 //Guardar Encuesta
 router.post('/GuardarEncuesta', EncuestaController.GuardarEncuesta);
-router.get('/TablaM', EncuestaController.TablaM);
-router.get('/TablaB', EncuestaController.TablaB);
+router.get('/TablaM:Area', EncuestaController.TablaM);
+router.get('/TablaB:Area', EncuestaController.TablaB);
 router.get('/ReporteM', (req, res) => {
     //res.send('holoo');
     res.render('Rep_Gemak.html');

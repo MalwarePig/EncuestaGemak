@@ -27,11 +27,11 @@ Controller.GuardarEncuesta = (req, res) => {
             let PreguntaCincoText = Object.values(data)[16];//obeter datos de un objeto Folio
             let Aceptable = Object.values(data)[17];//obeter datos de un objeto Folio
             let Declaratoria = Object.values(data)[18];//obeter datos de un objeto Folio
- 
- 
+            let PreguntaSeis = Object.values(data)[19];//obeter datos de un objeto FolioPreguntaSeis
+
             
             //console.log(Nombre,Nomina,Planta,PreguntaUno,PreguntaDos,PreguntaDosText,PreguntaTres,PreguntaTresText,Tos,Fiebre,Respirar,Gusto,Garganta,Cuerpo,Cabeza,Aceptable);
-            conn.query('INSERT INTO Encuesta(Nombre,Nomina,Planta,PreguntaUno,PreguntaDos,PreguntaDosText,PreguntaTres,PreguntaTresText,Tos,Fiebre,Respirar,Gusto,Garganta,Cuerpo,Cabeza,PreguntaCinco,PreguntaCincoText,Aceptable,Declaratoria)values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)', [Nombre,Nomina,Planta,PreguntaUno,PreguntaDos,PreguntaDosText,PreguntaTres,PreguntaTresText,Tos,Fiebre,Respirar,Gusto,Garganta,Cuerpo,Cabeza,PreguntaCinco,PreguntaCincoText,Aceptable,Declaratoria], (err, ot) => {
+            conn.query('INSERT INTO Encuesta(Nombre,Nomina,Planta,PreguntaUno,PreguntaDos,PreguntaDosText,PreguntaTres,PreguntaTresText,Tos,Fiebre,Respirar,Gusto,Garganta,Cuerpo,Cabeza,PreguntaCinco,PreguntaCincoText,Aceptable,Declaratoria,PreguntaSeis)values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)', [Nombre,Nomina,Planta,PreguntaUno,PreguntaDos,PreguntaDosText,PreguntaTres,PreguntaTresText,Tos,Fiebre,Respirar,Gusto,Garganta,Cuerpo,Cabeza,PreguntaCinco,PreguntaCincoText,Aceptable,Declaratoria,PreguntaSeis], (err, ot) => {
                 if (err) {
                     res.json("Error json: " + err);
                     console.log('Error al registrar despacho de herramienta'+ err);
@@ -77,10 +77,11 @@ Controller.listEncuestaM = (req,res)=> {
 Controller.TablaM = (req, res) => {
         //res.send('Metodo Get list');
         req.getConnection((err, conn) => {
+            const { Area } = req.params;
             if (err) {
                 console.log("Conexion: " + err)
             }
-            conn.query("SELECT * FROM Encuesta WHERE Planta = 'Morelos' order by Aceptable", (err, data) => {
+            conn.query("SELECT * FROM Encuesta WHERE Planta = 'Morelos' AND Area = " + Area + " order by Aceptable", (err, data) => {
                 if (err) {
                     res.json("Error json: " + err);
                     console.log('Error de lectura');
