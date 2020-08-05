@@ -82,16 +82,16 @@ Controller.TablaM = (req, res) => {
         if (err) {
             console.log("Conexion: " + err)
         }
-        conn.query("SELECT * FROM Encuesta WHERE Planta = 'Morelos' AND Area = " + Area + " order by Aceptable", (err, data) => {
+        conn.query("SELECT * FROM Encuesta WHERE Planta = 'Morelos' AND Area = '" + Area + "' order by Aceptable", (err, data) => {
             if (err) {
                 res.json("Error json: " + err);
                 console.log('Error de lectura');
             }
+            console.log(data)
             res.json(data);
         });
     });
 };
-
 
 Controller.TablaB = (req, res) => {
     //res.send('Metodo Get list');

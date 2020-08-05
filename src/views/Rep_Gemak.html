@@ -52,7 +52,7 @@
       </tbody>
     </table>
     <button type="button" class="btn btn-secondary" id="ButtonDownload" data-target="#exampleModal"
-      data-toggle="modal">Descargar</button>
+      data-toggle="modal" onclick="Excel()">Descargar</button>
   </div>
 
 
@@ -72,8 +72,11 @@
         <div class="col-md-5">
           <label for="Area">Area</label>
           <select id="Area" class="form-control">
+            <option>Acabado</option>
+            <option>Calidad</option>
+            <option>Operacion</option>
             <option>Produccion</option>
-            <option>Administrativa</option>
+            <option>RH</option>
           </select>
         </div>
       </div>
@@ -84,20 +87,7 @@
   </div>
 </div>
 
-  <script>
-    var tabla = document.getElementById("Registros");
-    var wb = XLSX.utils.table_to_book(tabla, { sheet: "Reporte" });
-    var wbout = XLSX.write(wb, { bookType: 'xlsx', bookSST: true, type: 'binary' });
-    function s2ab(s) {
-      var buf = new ArrayBuffer(s.length);
-      var view = new Uint8Array(buf);
-      for (var i = 0; i < s.length; i++) view[i] = s.charCodeAt(i) & 0xFF;
-      return buf;
-    }
-    $("#ButtonDownload").click(function () {
-      saveAs(new Blob([s2ab(wbout)], { type: "application/octet-stream" }), 'Reporte_Covid.xlsx');
-    });
-  </script>
+
 
 
 </body>
