@@ -71,7 +71,7 @@ function Tabla() {
                         if (Garganta == "Si") { Motivo.push("Dolor de garganta"); }
                         if (Cuerpo == "Si") { Motivo.push("Dolor de cuerpo"); }
                         if (Cabeza == "Si") { Motivo.push("Dolor inusual de cabeza"); }
-                        alert(Nombre + Motivo.join()+ 'Sintomas ' + Declaratoria+PreguntaUno+PreguntaDos+PreguntaTres+'tos'+Tos+'Fiebre'+Fiebre+'Respirar'+Respirar+'gusto'+Gusto+'Garganta'+Garganta+'cuerpo'+Cuerpo+'cabeza'+Cabeza);
+                       // alert(Nombre + Motivo.join()+ 'Sintomas ' + Declaratoria+PreguntaUno+PreguntaDos+PreguntaTres+'tos'+Tos+'Fiebre'+Fiebre+'Respirar'+Respirar+'gusto'+Gusto+'Garganta'+Garganta+'cuerpo'+Cuerpo+'cabeza'+Cabeza);
                         
                         Arreglo = [Aceptable, Nombre, Nomina, Planta, Motivo.join(), Fecha];
                         var Tabla = document.getElementById('Registros').getElementsByTagName('tbody')[0];
