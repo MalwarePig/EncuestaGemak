@@ -15,6 +15,7 @@ function Tabla() {
                     let Nomina = data[i].Nomina;
                     let Planta = data[i].Planta;
                     let Fecha = data[i].Fecha;
+                    let Motivo = [];
                     if (Aceptable == "Aceptado") {
                         Arreglo = [Aceptable, Nombre, Nomina, Planta, "N/A", Fecha];
                         var Tabla = document.getElementById('Registros').getElementsByTagName('tbody')[0];
@@ -49,7 +50,7 @@ function Tabla() {
                         let PreguntaCinco = data[i].PreguntaCinco;
                         let PreguntaCincoText = data[i].PreguntaCincoText;
 
-                        const Motivo = [];
+                       
                         if (Declaratoria == "No") {
                             Motivo.push("Declaracion: " + Declaratoria);
                         }
@@ -63,24 +64,15 @@ function Tabla() {
                             Motivo.push("Sí estuvo en lugar concurrido: " + PreguntaTresText);
                         }
 
-                        for (var x = 0; x < 7; x++) {
-                            switch (x) {
-                                case 1: if (Tos == "Si") { Motivo.push("Tos"); }
-                                    break;
-                                case 2: if (Fiebre == "Si") { Motivo.push("Fiebre"); }
-                                    break;
-                                case 3: if (Respirar == "Si") { Motivo.push("Respirar"); }
-                                    break;
-                                case 4: if (Gusto == "Si") { Motivo.push("Perdidad de gusto"); }
-                                    break;
-                                case 5: if (Garganta == "Si") { Motivo.push("Dolor de garganta"); }
-                                    break;
-                                case 6: if (Cuerpo == "Si") { Motivo.push("Dolor de cuerpo"); }
-                                    break;
-                                case 7: if (Cabeza == "Si") { Motivo.push("Dolor inusual de cabeza"); }
-                                    break;
-                            }
-                        }
+                        if (Tos == "Si") { Motivo.push("Tos"); }
+                        if (Fiebre == "Si") { Motivo.push("Fiebre"); }
+                        if (Respirar == "Si") { Motivo.push("Respirar"); }
+                        if (Gusto == "Si") { Motivo.push("Perdidad de gusto"); }
+                        if (Garganta == "Si") { Motivo.push("Dolor de garganta"); }
+                        if (Cuerpo == "Si") { Motivo.push("Dolor de cuerpo"); }
+                        if (Cabeza == "Si") { Motivo.push("Dolor inusual de cabeza"); }
+                        alert(Nombre + Motivo.join()+ 'Sintomas ' + Declaratoria+PreguntaUno+PreguntaDos+PreguntaTres+'tos'+Tos+'Fiebre'+Fiebre+'Respirar'+Respirar+'gusto'+Gusto+'Garganta'+Garganta+'cuerpo'+Cuerpo+'cabeza'+Cabeza);
+                        
                         Arreglo = [Aceptable, Nombre, Nomina, Planta, Motivo.join(), Fecha];
                         var Tabla = document.getElementById('Registros').getElementsByTagName('tbody')[0];
                         // inserta una fila al final de la tabla
@@ -100,6 +92,7 @@ function Tabla() {
                     //Preventivo
                     if (Aceptable == "Preventivo") {
 
+                        let Declaratoria = data[i].Declaratoria;
                         let PreguntaUno = data[i].PreguntaUno;
                         let PreguntaDos = data[i].PreguntaDos;
                         let PreguntaDosText = data[i].PreguntaDosText;
@@ -115,7 +108,9 @@ function Tabla() {
                         let PreguntaCinco = data[i].PreguntaCinco;
                         let PreguntaCincoText = data[i].PreguntaCincoText;
 
-                        const Motivo = [];
+                        if (Declaratoria == "No") {
+                            Motivo.push("Declaracion: " + Declaratoria);
+                        }
                         if (PreguntaUno == "Si") {
                             Motivo.push("Contacto con COVID19: " + PreguntaUno);
                         }
@@ -126,24 +121,14 @@ function Tabla() {
                             Motivo.push("Sí estuvo en lugar concurrido: " + PreguntaTresText);
                         }
 
-                        for (var x = 0; x < 8; x++) {
-                            switch (x) {
-                                case 1: if (Tos == "Si") { Motivo.push("Tos"); }
-                                    break;
-                                case 2: if (Fiebre == "Si") { Motivo.push("Fiebre"); }
-                                    break;
-                                case 3: if (Respirar == "Si") { Motivo.push("Respirar"); }
-                                    break;
-                                case 4: if (Gusto == "Si") { Motivo.push("Perdidad de gusto"); }
-                                    break;
-                                case 5: if (Garganta == "Si") { Motivo.push("Dolor de garganta"); }
-                                    break;
-                                case 6: if (Cuerpo == "Si") { Motivo.push("Dolor de cuerpo"); }
-                                    break;
-                                case 7: if (Cabeza == "Si") { Motivo.push("Dolor inusual de cabeza"); }
-                                    break;
-                            }
-                        }
+                        if (Tos == "Si") { Motivo.push("Tos"); }
+                        if (Fiebre == "Si") { Motivo.push("Fiebre"); }
+                        if (Respirar == "Si") { Motivo.push("Respirar"); }
+                        if (Gusto == "Si") { Motivo.push("Perdidad de gusto"); }
+                        if (Garganta == "Si") { Motivo.push("Dolor de garganta"); }
+                        if (Cuerpo == "Si") { Motivo.push("Dolor de cuerpo"); }
+                        if (Cabeza == "Si") { Motivo.push("Dolor inusual de cabeza"); }
+
                         Arreglo = [Aceptable, Nombre, Nomina, Planta, Motivo.join(), Fecha];
                         var Tabla = document.getElementById('Registros').getElementsByTagName('tbody')[0];
                         // inserta una fila al final de la tabla
@@ -196,6 +181,7 @@ function Tabla() {
                     }//Aceptados
                     if (Aceptable == "Negado") {
 
+                        let Declaratoria = data[i].Declaratoria;
                         let PreguntaUno = data[i].PreguntaUno;
                         let PreguntaDos = data[i].PreguntaDos;
                         let PreguntaDosText = data[i].PreguntaDosText;
@@ -211,7 +197,9 @@ function Tabla() {
                         let PreguntaCinco = data[i].PreguntaCinco;
                         let PreguntaCincoText = data[i].PreguntaCincoText;
 
-                        const Motivo = [];
+                        if (Declaratoria == "No") {
+                            Motivo.push("Declaracion: " + Declaratoria);
+                        }
                         if (PreguntaUno == "Si") {
                             Motivo.push("Contacto con COVID19: " + PreguntaUno);
                         }
@@ -222,24 +210,14 @@ function Tabla() {
                             Motivo.push("Sí estuvo en lugar concurrido: " + PreguntaTresText);
                         }
 
-                        for (var x = 0; x < 7; x++) {
-                            switch (x) {
-                                case 1: if (Tos == "Si") { Motivo.push("Tos"); }
-                                    break;
-                                case 2: if (Fiebre == "Si") { Motivo.push("Fiebre"); }
-                                    break;
-                                case 3: if (Respirar == "Si") { Motivo.push("Respirar"); }
-                                    break;
-                                case 4: if (Gusto == "Si") { Motivo.push("Perdidad de gusto"); }
-                                    break;
-                                case 5: if (Garganta == "Si") { Motivo.push("Dolor de garganta"); }
-                                    break;
-                                case 6: if (Cuerpo == "Si") { Motivo.push("Dolor de cuerpo"); }
-                                    break;
-                                case 7: if (Cabeza == "Si") { Motivo.push("Dolor inusual de cabeza"); }
-                                    break;
-                            }
-                        }
+                        if (Tos == "Si") { Motivo.push("Tos"); }
+                        if (Fiebre == "Si") { Motivo.push("Fiebre"); }
+                        if (Respirar == "Si") { Motivo.push("Respirar"); }
+                        if (Gusto == "Si") { Motivo.push("Perdidad de gusto"); }
+                        if (Garganta == "Si") { Motivo.push("Dolor de garganta"); }
+                        if (Cuerpo == "Si") { Motivo.push("Dolor de cuerpo"); }
+                        if (Cabeza == "Si") { Motivo.push("Dolor inusual de cabeza"); }
+
                         Arreglo = [Aceptable, Nombre, Nomina, Planta, Motivo.join(), Fecha];
                         var Tabla = document.getElementById('Registros').getElementsByTagName('tbody')[0];
                         // inserta una fila al final de la tabla
@@ -259,6 +237,7 @@ function Tabla() {
                     //Preventivo
                     if (Aceptable == "Preventivo") {
 
+                        let Declaratoria = data[i].Declaratoria;
                         let PreguntaUno = data[i].PreguntaUno;
                         let PreguntaDos = data[i].PreguntaDos;
                         let PreguntaDosText = data[i].PreguntaDosText;
@@ -274,7 +253,9 @@ function Tabla() {
                         let PreguntaCinco = data[i].PreguntaCinco;
                         let PreguntaCincoText = data[i].PreguntaCincoText;
 
-                        const Motivo = [];
+                        if (Declaratoria == "No") {
+                            Motivo.push("Declaracion: " + Declaratoria);
+                        }
                         if (PreguntaUno == "Si") {
                             Motivo.push("Contacto con COVID19: " + PreguntaUno);
                         }
@@ -285,24 +266,14 @@ function Tabla() {
                             Motivo.push("Sí estuvo en lugar concurrido: " + PreguntaTresText);
                         }
 
-                        for (var x = 0; x < 8; x++) {
-                            switch (x) {
-                                case 1: if (Tos == "Si") { Motivo.push("Tos"); }
-                                    break;
-                                case 2: if (Fiebre == "Si") { Motivo.push("Fiebre"); }
-                                    break;
-                                case 3: if (Respirar == "Si") { Motivo.push("Respirar"); }
-                                    break;
-                                case 4: if (Gusto == "Si") { Motivo.push("Perdidad de gusto"); }
-                                    break;
-                                case 5: if (Garganta == "Si") { Motivo.push("Dolor de garganta"); }
-                                    break;
-                                case 6: if (Cuerpo == "Si") { Motivo.push("Dolor de cuerpo"); }
-                                    break;
-                                case 7: if (Cabeza == "Si") { Motivo.push("Dolor inusual de cabeza"); }
-                                    break;
-                            }
-                        }
+                        if (Tos == "Si") { Motivo.push("Tos"); }
+                        if (Fiebre == "Si") { Motivo.push("Fiebre"); }
+                        if (Respirar == "Si") { Motivo.push("Respirar"); }
+                        if (Gusto == "Si") { Motivo.push("Perdidad de gusto"); }
+                        if (Garganta == "Si") { Motivo.push("Dolor de garganta"); }
+                        if (Cuerpo == "Si") { Motivo.push("Dolor de cuerpo"); }
+                        if (Cabeza == "Si") { Motivo.push("Dolor inusual de cabeza"); }
+
                         Arreglo = [Aceptable, Nombre, Nomina, Planta, Motivo.join(), Fecha];
                         var Tabla = document.getElementById('Registros').getElementsByTagName('tbody')[0];
                         // inserta una fila al final de la tabla

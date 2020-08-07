@@ -79,6 +79,7 @@ function Guardado(Planta,Area){
      }
      if (chck_Cabeza.checked == true) {
           Acceso = "Preventivo";
+          Cabeza = "Si";
      }
      if (PreguntaSeis == "Si") {
           Acceso = "Preventivo";
@@ -90,26 +91,32 @@ function Guardado(Planta,Area){
      //======================================================================
      if (chck_TOS.checked == true) {
           Acceso = "Negado";
+          Tos = "Si";
      }
      //======================================================================
      if (chck_Fiebre.checked == true) {
           Acceso = "Negado";
+          Fiebre = "Si";
      }
      //======================================================================
      if (chck_Respirar.checked == true) {
           Acceso = "Negado";
+          Respirar = "Si";
      }
      //======================================================================
      if (chck_Gusto.checked == true) {
           Acceso = "Negado";
+          Gusto = "Si";
      }
      //======================================================================
      if (chck_Garganta.checked == true) {
           Acceso = "Negado";
+          Garganta = "Si";
      }
      //======================================================================
      if (chck_Cuerpo.checked == true) {
           Acceso = "Negado";
+          Cuerpo = "Si";
      }
      //======================================================================
 
