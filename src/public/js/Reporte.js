@@ -4,7 +4,6 @@ function Tabla() {
     var condicion = Planta.indexOf("ReporteM");
     let Area = document.getElementById("Area").value;
 
-
     if (condicion > 0) { //si es morelos...
         $.ajax({
             url: "/TablaM/"+Area,
@@ -34,7 +33,7 @@ function Tabla() {
                         }
                     }//Aceptados
                     if (Aceptable == "Negado") {
-
+                        let Declaratoria = data[i].Declaratoria;
                         let PreguntaUno = data[i].PreguntaUno;
                         let PreguntaDos = data[i].PreguntaDos;
                         let PreguntaDosText = data[i].PreguntaDosText;
@@ -51,6 +50,9 @@ function Tabla() {
                         let PreguntaCincoText = data[i].PreguntaCincoText;
 
                         const Motivo = [];
+                        if (Declaratoria == "No") {
+                            Motivo.push("Declaracion: " + Declaratoria);
+                        }
                         if (PreguntaUno == "Si") {
                             Motivo.push("Contacto con COVID19: " + PreguntaUno);
                         }

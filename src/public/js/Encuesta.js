@@ -71,6 +71,9 @@ function Guardado(Planta,Area){
      }
 
      //======================================================================
+     if (Declaratoria == "No") {
+          Acceso = "Preventivo";
+     }
      if (PreguntaTres == "Si") {
           Acceso = "Preventivo";
      }

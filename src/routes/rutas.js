@@ -20,7 +20,6 @@ var reinicio = router.get('/EncuestaBravo', (req, res) => {
 //Iniciar logueo
 router.post('/Login', UserController.login);
 
-
 /////////////////////////////////////////////////////////////////////////// ENTRAR A cPlaner /////////////////////////////////////////////////////////////////////////////
 router.get('/cPlaner', function(request, response) {
 	if (request.session.loggedin) {
