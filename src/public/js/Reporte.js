@@ -308,7 +308,7 @@ function Fecha() {
     for (var j = 0; j < total; j++) {//filas
         let Fecha =  new Date(tabla.rows[j].cells[5].childNodes[0].nodeValue);
         console.log('Fecha tabla ' + Fecha);
-        var dd = Fecha.getDate();
+        var dd = Fecha.getDate()+1;
         var mm = Fecha.getMonth() + 1;
         var yyyy = Fecha.getFullYear();
         var HH = Fecha.getHours();
@@ -320,7 +320,7 @@ function Fecha() {
         if (mm < 10) {
             mm = '0' + mm;
         }
-        var today = yyyy + '/' + mm + '/' + dd;
+        var today = dd + '/' + mm + '/' + yyyy;
         document.getElementById("Fecha" + j).innerHTML = today;
         console.log('Fecha Funcion ' + today);
     }//fin filas
