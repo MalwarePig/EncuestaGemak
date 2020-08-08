@@ -308,8 +308,21 @@ function Fecha() {
     for (var j = 0; j < total; j++) {//filas
         let Fecha = tabla.rows[j].cells[5].childNodes[0].nodeValue;
         console.log('Fecha tabla ' + Fecha);
-        document.getElementById("Fecha" + j).innerHTML = FormtatoFechas(Fecha);
-        console.log('Fecha Funcion ' + FormtatoFechas(Fecha));
+        var dd = Fecha.getDate();
+        var mm = Fecha.getMonth() + 1;
+        var yyyy = Fecha.getFullYear();
+        var HH = Fecha.getHours();
+        var mi = Fecha.getMinutes();
+
+        if (dd < 10) {
+            dd = '0' + dd;
+        }
+        if (mm < 10) {
+            mm = '0' + mm;
+        }
+        var today = yyyy + '/' + mm + '/' + dd + " " + HH + ':' + mi;
+        document.getElementById("Fecha" + j).innerHTML = today;
+        console.log('Fecha Funcion ' + today);
     }//fin filas
 }
 
@@ -368,7 +381,7 @@ function Pendientes() {
         $.ajax({
             url: '/PendientesMorelos/' + Area,
             success: function (data) {
-                
+
                 for (var j = 0; j < data.length; j++) {
                     var existencia = false;
                     var Nombre = data[j].Nombre;
@@ -379,24 +392,24 @@ function Pendientes() {
                             existencia = true;
                         }
                     }// i Tabla
-                    if(existencia == false){
-                       //alert('falta' + Nomina)
-                       Arreglo = ['Sin registro', Nombre, Nomina, Planta, '-', '-'];
-                            var Tabla = document.getElementById('Registros').getElementsByTagName('tbody')[0];
-                            // inserta una fila al final de la tabla
-                            var newRow = Tabla.insertRow(Tabla.rows.length);
-                            for (var x = 0; x < Arreglo.length; x++) {
-                                // inserta una celda en el indice 0
-                                var newCell = newRow.insertCell(x);
-                                newRow.setAttribute("id", "Fila" + j);//se asigna id al incrementar cada fila +1 para contar el encabezado
-                                // adjuntar el texto al nodo
-                                var newText = document.createTextNode(Arreglo[x]);
-                                if (x == 5) {
-                                    newCell.setAttribute("id", "Fecha" + i);//se asigna id al incrementar cada fila +1 para contar el encabezado
-                                }
-                                newCell.appendChild(newText);
-                                newCell.style.backgroundColor = "#a9a5a4  "; //gris
+                    if (existencia == false) {
+                        //alert('falta' + Nomina)
+                        Arreglo = ['Sin registro', Nombre, Nomina, Planta, '-', '-'];
+                        var Tabla = document.getElementById('Registros').getElementsByTagName('tbody')[0];
+                        // inserta una fila al final de la tabla
+                        var newRow = Tabla.insertRow(Tabla.rows.length);
+                        for (var x = 0; x < Arreglo.length; x++) {
+                            // inserta una celda en el indice 0
+                            var newCell = newRow.insertCell(x);
+                            newRow.setAttribute("id", "Fila" + j);//se asigna id al incrementar cada fila +1 para contar el encabezado
+                            // adjuntar el texto al nodo
+                            var newText = document.createTextNode(Arreglo[x]);
+                            if (x == 5) {
+                                newCell.setAttribute("id", "Fecha" + i);//se asigna id al incrementar cada fila +1 para contar el encabezado
                             }
+                            newCell.appendChild(newText);
+                            newCell.style.backgroundColor = "#a9a5a4  "; //gris
+                        }
                     }
                 }// j data
             }
@@ -406,7 +419,7 @@ function Pendientes() {
         $.ajax({
             url: '/PendientesBravo/' + Area,
             success: function (data) {
-                
+
                 for (var j = 0; j < data.length; j++) {
                     var existencia = false;
                     var Nombre = data[j].Nombre;
@@ -417,51 +430,51 @@ function Pendientes() {
                             existencia = true;
                         }
                     }// i Tabla
-                    if(existencia == false){
-                       //alert('falta' + Nomina)
-                       Arreglo = ['Sin registro', Nombre, Nomina, Planta, '-', '-'];
-                            var Tabla = document.getElementById('Registros').getElementsByTagName('tbody')[0];
-                            // inserta una fila al final de la tabla
-                            var newRow = Tabla.insertRow(Tabla.rows.length);
-                            for (var x = 0; x < Arreglo.length; x++) {
-                                // inserta una celda en el indice 0
-                                var newCell = newRow.insertCell(x);
-                                newRow.setAttribute("id", "Fila" + j);//se asigna id al incrementar cada fila +1 para contar el encabezado
-                                // adjuntar el texto al nodo
-                                var newText = document.createTextNode(Arreglo[x]);
-                                if (x == 5) {
-                                    newCell.setAttribute("id", "Fecha" + i);//se asigna id al incrementar cada fila +1 para contar el encabezado
-                                }
-                                newCell.appendChild(newText);
-                                newCell.style.backgroundColor = "#a9a5a4  "; //gris
+                    if (existencia == false) {
+                        //alert('falta' + Nomina)
+                        Arreglo = ['Sin registro', Nombre, Nomina, Planta, '-', '-'];
+                        var Tabla = document.getElementById('Registros').getElementsByTagName('tbody')[0];
+                        // inserta una fila al final de la tabla
+                        var newRow = Tabla.insertRow(Tabla.rows.length);
+                        for (var x = 0; x < Arreglo.length; x++) {
+                            // inserta una celda en el indice 0
+                            var newCell = newRow.insertCell(x);
+                            newRow.setAttribute("id", "Fila" + j);//se asigna id al incrementar cada fila +1 para contar el encabezado
+                            // adjuntar el texto al nodo
+                            var newText = document.createTextNode(Arreglo[x]);
+                            if (x == 5) {
+                                newCell.setAttribute("id", "Fecha" + i);//se asigna id al incrementar cada fila +1 para contar el encabezado
                             }
+                            newCell.appendChild(newText);
+                            newCell.style.backgroundColor = "#a9a5a4  "; //gris
+                        }
                     }
                 }// j data
             }
         })
     }
 
-  
+
     //alert("Pendientes: " + total + 'Nomina'+tabla.rows[1].cells[2].childNodes[0].nodeValue);
-    
+
 }
 
 /*==========================================    FORMTATO DE FECHA    ==========================================================================
 ===============================================================================================================================================*/
-function FormtatoFechas(Fecha){
-    var today = new Date(Fecha); 
-    var dd = today.getDate(); 
-    var mm = today.getMonth() + 1; 
-    var yyyy = today.getFullYear(); 
+function FormtatoFechas(Fecha) {
+    var today = new Date(Fecha);
+    var dd = today.getDate();
+    var mm = today.getMonth() + 1;
+    var yyyy = today.getFullYear();
     var HH = today.getHours();
     var mi = today.getMinutes();
 
-    if (dd < 10) { 
-        dd = '0' + dd; 
+    if (dd < 10) {
+        dd = '0' + dd;
     }
-    if (mm < 10) { 
-        mm = '0' + mm; 
+    if (mm < 10) {
+        mm = '0' + mm;
     }
-    var today =  dd+ '/' + mm + '/' + yyyy; 
+    var today = dd + '/' + mm + '/' + yyyy;
     return today;
 }
