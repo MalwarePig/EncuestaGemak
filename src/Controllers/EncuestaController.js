@@ -175,7 +175,7 @@ Controller.PendientesMorelos = (req, res) => {
         }
         const { Area } = req.params;
         if (Area == 'Morelos') {
-            conn.query("SELECT * from Pivote Where Planta = 'Morelos'", (err, Area) => {
+            conn.query("SELECT * from Pivote Where Planta = 'Morelos' order by Nomina", (err, Area) => {
                 if (err) {
                     res.json("Error json: " + err);
                     console.log('Error de lectura');
@@ -184,7 +184,7 @@ Controller.PendientesMorelos = (req, res) => {
                 res.json(Area);
             });
         } else if (Area == 'Bravo') {
-            conn.query("SELECT * from Pivote Where Planta = 'Bravo'", (err, Area) => {
+            conn.query("SELECT * from Pivote Where Planta = 'Bravo' order by Nomina", (err, Area) => {
                 if (err) {
                     res.json("Error json: " + err);
                     console.log('Error de lectura');
@@ -193,7 +193,7 @@ Controller.PendientesMorelos = (req, res) => {
                 res.json(Area);
             });
         } else {
-            conn.query("SELECT * from Pivote Where Planta = 'Morelos' AND Area = '" + Area + "'", (err, Area) => {
+            conn.query("SELECT * from Pivote Where Planta = 'Morelos' AND Area = '" + Area + " 'order by Nomina", (err, Area) => {
                 if (err) {
                     res.json("Error json: " + err);
                     console.log('Error de lectura');
@@ -214,7 +214,7 @@ Controller.PendientesBravo = (req, res) => {
         }
         const { Area } = req.params;
         if (Area == 'Morelos') {
-            conn.query("SELECT * from Pivote Where Planta = 'Morelos'", (err, Area) => {
+            conn.query("SELECT * from Pivote Where Planta = 'Morelos' order by Nomina", (err, Area) => {
                 if (err) {
                     res.json("Error json: " + err);
                     console.log('Error de lectura');
@@ -223,7 +223,7 @@ Controller.PendientesBravo = (req, res) => {
                 res.json(Area);
             });
         } else if (Area == 'Bravo') {
-            conn.query("SELECT * from Pivote Where Planta = 'Bravo'", (err, Area) => {
+            conn.query("SELECT * from Pivote Where Planta = 'Bravo' order by Nomina", (err, Area) => {
                 if (err) {
                     res.json("Error json: " + err);
                     console.log('Error de lectura');
@@ -232,7 +232,7 @@ Controller.PendientesBravo = (req, res) => {
                 res.json(Area);
             });
         } else {
-            conn.query("SELECT * from Pivote Where Planta = 'Bravo' AND Area = '" + Area + "'", (err, Area) => {
+            conn.query("SELECT * from Pivote Where Planta = 'Bravo' AND Area = '" + Area + "' order by Nomina", (err, Area) => {
                 if (err) {
                     res.json("Error json: " + err);
                     console.log('Error de lectura');
