@@ -46,7 +46,7 @@ Controller.GuardarEncuesta = (req, res) => {
 Controller.listEncuestaB = (req, res) => {
     //res.send('Metodo Get list');
     req.getConnection((err, conn) => {
-        conn.query("SELECT * FROM Encuesta WHERE Planta = 'Bravo' order by Aceptable", (err, datos) => {
+        conn.query("SELECT * FROM Encuesta WHERE Planta = 'Bravo' order by Aceptable,Nomina", (err, datos) => {
             if (err) {
                 res.json(err);
                 console.log('Error de lectura');
@@ -64,7 +64,7 @@ Controller.listEncuestaB = (req, res) => {
 Controller.listEncuestaM = (req, res) => {
     //res.send('Metodo Get list');
     req.getConnection((err, conn) => {
-        conn.query("SELECT * FROM Encuesta WHERE Planta = 'Morelos' order by Aceptable", (err, datos) => {
+        conn.query("SELECT * FROM Encuesta WHERE Planta = 'Morelos' order by Aceptable,Nomina", (err, datos) => {
             if (err) {
                 res.json(err);
                 console.log('Error de lectura');
@@ -84,7 +84,7 @@ Controller.TablaM = (req, res) => {
             console.log("Conexion: " + err)
         }
         if (Area == 'Morelos') {
-            conn.query("SELECT * FROM Encuesta WHERE Planta = 'Morelos' and Fecha = CURDATE() order by Aceptable", (err, data) => {
+            conn.query("SELECT * FROM Encuesta WHERE Planta = 'Morelos' and Fecha = CURDATE() order by Aceptable,Nomina", (err, data) => {
                 if (err) {
                     res.json("Error json: " + err);
                     console.log('Error de lectura');
@@ -93,7 +93,7 @@ Controller.TablaM = (req, res) => {
                 res.json(data);
             });
         } else if (Area == 'Bravo') {
-            conn.query("SELECT * FROM Encuesta WHERE Planta = 'Bravo' and Fecha = CURDATE() order by Aceptable", (err, data) => {
+            conn.query("SELECT * FROM Encuesta WHERE Planta = 'Bravo' and Fecha = CURDATE() order by Aceptable,Nomina", (err, data) => {
                 if (err) {
                     res.json("Error json: " + err);
                     console.log('Error de lectura');
@@ -102,7 +102,7 @@ Controller.TablaM = (req, res) => {
                 res.json(data);
             });
         } else {
-            conn.query("SELECT * FROM Encuesta WHERE Planta = 'Morelos' and Fecha = CURDATE() AND Area = '" + Area + "' order by Aceptable", (err, data) => {
+            conn.query("SELECT * FROM Encuesta WHERE Planta = 'Morelos' and Fecha = CURDATE() AND Area = '" + Area + "' order by Aceptable,Nomina", (err, data) => {
                 if (err) {
                     res.json("Error json: " + err);
                     console.log('Error de lectura');
@@ -121,7 +121,7 @@ Controller.TablaB = (req, res) => {
         if (err) {
             console.log("Conexion: " + err)
         }
-        conn.query("SELECT * FROM Encuesta WHERE Planta = 'Bravo' order by Aceptable", (err, data) => {
+        conn.query("SELECT * FROM Encuesta WHERE Planta = 'Bravo' order by Aceptable,Nomina", (err, data) => {
             if (err) {
                 res.json("Error json: " + err);
                 console.log('Error de lectura');
