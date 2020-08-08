@@ -16,7 +16,7 @@ function Tabla() {
                     let Planta = data[i].Planta;
                     let Fecha = data[i].Fecha;
           
-                    console.log(Fecha);
+                    console.log('Fecha Tabla: ' +Fecha);
                     let Motivo = [];
                     if (Aceptable == "Aceptado") {
                         Arreglo = [Aceptable, Nombre, Nomina, Planta, "N/A", Fecha];
@@ -309,6 +309,7 @@ function Fecha() {
     for (var j = 0; j < total; j++) {//filas
         console.log("Fila: " + j - 1)
         let Fecha = tabla.rows[j].cells[5].childNodes[0].nodeValue;
+        console.log('Fecha Moment: ' +Fecha);
         document.getElementById("Fecha" + j).innerHTML = moment(Fecha).format('DD/MM/YYYY');
         console.log("Fila " + j - 1)
     }//fin filas
