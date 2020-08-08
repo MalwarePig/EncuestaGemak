@@ -307,7 +307,9 @@ function Fecha() {
     var total = tabla.rows.length//Total de filasa
     for (var j = 0; j < total; j++) {//filas
         let Fecha = tabla.rows[j].cells[5].childNodes[0].nodeValue;
+        console.log('Fecha tabla ' + Fecha);
         document.getElementById("Fecha" + j).innerHTML = FormtatoFechas(Fecha);
+        console.log('Fecha Funcion ' + FormtatoFechas(Fecha));
     }//fin filas
 }
 
