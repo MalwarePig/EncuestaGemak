@@ -2,7 +2,7 @@
 > heroku login
 
 ********************** Entrar en repositorio *****************************
-> cd C:\Users\Soporte\Desktop\NodeControl - FCFM  
+> cd C:\Users\womym\Desktop\NodeControl - FCFM - copia
 > git init //para crear repositorio vacio a subir
 > git status //verificar archivos a subir
 > git add .  //Agrega todos los archivos listos a subir

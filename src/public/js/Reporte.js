@@ -15,6 +15,8 @@ function Tabla() {
                     let Nomina = data[i].Nomina;
                     let Planta = data[i].Planta;
                     let Fecha = data[i].Fecha;
+                    Fecha.getTimezoneOffset();
+                    alert(Fecha);
                     let Motivo = [];
                     if (Aceptable == "Aceptado") {
                         Arreglo = [Aceptable, Nombre, Nomina, Planta, "N/A", Fecha];
@@ -360,49 +362,88 @@ function Pendientes() {
     var url = window.location.href;
     var Condicion = url.indexOf("ReporteM");
     var Planta = "";
-    if (Condicion > 0) {
-        Planta = "Morelos";
-    } else {
-        Planta = "Bravo"
-    }
-
     var tabla = document.getElementById("Registros");
     var total = tabla.rows.length//Total de filas
-    //alert("Pendientes: " + total + 'Nomina'+tabla.rows[1].cells[2].childNodes[0].nodeValue);
-    $.ajax({
-        url: '/Pendientes/' + Planta,
-        success: function (data) {
-            
-            for (var j = 0; j < data.length; j++) {
-                var existencia = false;
-                var Nombre = data[j].Nombre;
-                var Nomina = data[j].Nomina;
-                var Planta = data[j].Planta;
-                for (var i = 1; i <= total - 1; i++) {
-                    if (tabla.rows[i].cells[2].childNodes[0].nodeValue == Nomina) {
-                        existencia = true;
-                    }
-                }// i Tabla
-                if(existencia == false){
-                   //alert('falta' + Nomina)
-                   Arreglo = ['Sin registro', Nombre, Nomina, Planta, '-', '-'];
-                        var Tabla = document.getElementById('Registros').getElementsByTagName('tbody')[0];
-                        // inserta una fila al final de la tabla
-                        var newRow = Tabla.insertRow(Tabla.rows.length);
-                        for (var x = 0; x < Arreglo.length; x++) {
-                            // inserta una celda en el indice 0
-                            var newCell = newRow.insertCell(x);
-                            newRow.setAttribute("id", "Fila" + j);//se asigna id al incrementar cada fila +1 para contar el encabezado
-                            // adjuntar el texto al nodo
-                            var newText = document.createTextNode(Arreglo[x]);
-                            if (x == 5) {
-                                newCell.setAttribute("id", "Fecha" + i);//se asigna id al incrementar cada fila +1 para contar el encabezado
-                            }
-                            newCell.appendChild(newText);
-                            newCell.style.backgroundColor = "#a9a5a4  "; //gris
+    let Area = document.getElementById("Area").value;
+    if (Condicion > 0) {
+        Planta = "Morelos";
+        $.ajax({
+            url: '/PendientesMorelos/' + Area,
+            success: function (data) {
+                
+                for (var j = 0; j < data.length; j++) {
+                    var existencia = false;
+                    var Nombre = data[j].Nombre;
+                    var Nomina = data[j].Nomina;
+                    var Planta = data[j].Planta;
+                    for (var i = 1; i <= total - 1; i++) {
+                        if (tabla.rows[i].cells[2].childNodes[0].nodeValue == Nomina) {
+                            existencia = true;
                         }
-                }
-            }// j data
-        }
-    })
+                    }// i Tabla
+                    if(existencia == false){
+                       //alert('falta' + Nomina)
+                       Arreglo = ['Sin registro', Nombre, Nomina, Planta, '-', '-'];
+                            var Tabla = document.getElementById('Registros').getElementsByTagName('tbody')[0];
+                            // inserta una fila al final de la tabla
+                            var newRow = Tabla.insertRow(Tabla.rows.length);
+                            for (var x = 0; x < Arreglo.length; x++) {
+                                // inserta una celda en el indice 0
+                                var newCell = newRow.insertCell(x);
+                                newRow.setAttribute("id", "Fila" + j);//se asigna id al incrementar cada fila +1 para contar el encabezado
+                                // adjuntar el texto al nodo
+                                var newText = document.createTextNode(Arreglo[x]);
+                                if (x == 5) {
+                                    newCell.setAttribute("id", "Fecha" + i);//se asigna id al incrementar cada fila +1 para contar el encabezado
+                                }
+                                newCell.appendChild(newText);
+                                newCell.style.backgroundColor = "#a9a5a4  "; //gris
+                            }
+                    }
+                }// j data
+            }
+        })
+    } else {
+        Planta = "Bravo"
+        $.ajax({
+            url: '/PendientesBravo/' + Area,
+            success: function (data) {
+                
+                for (var j = 0; j < data.length; j++) {
+                    var existencia = false;
+                    var Nombre = data[j].Nombre;
+                    var Nomina = data[j].Nomina;
+                    var Planta = data[j].Planta;
+                    for (var i = 1; i <= total - 1; i++) {
+                        if (tabla.rows[i].cells[2].childNodes[0].nodeValue == Nomina) {
+                            existencia = true;
+                        }
+                    }// i Tabla
+                    if(existencia == false){
+                       //alert('falta' + Nomina)
+                       Arreglo = ['Sin registro', Nombre, Nomina, Planta, '-', '-'];
+                            var Tabla = document.getElementById('Registros').getElementsByTagName('tbody')[0];
+                            // inserta una fila al final de la tabla
+                            var newRow = Tabla.insertRow(Tabla.rows.length);
+                            for (var x = 0; x < Arreglo.length; x++) {
+                                // inserta una celda en el indice 0
+                                var newCell = newRow.insertCell(x);
+                                newRow.setAttribute("id", "Fila" + j);//se asigna id al incrementar cada fila +1 para contar el encabezado
+                                // adjuntar el texto al nodo
+                                var newText = document.createTextNode(Arreglo[x]);
+                                if (x == 5) {
+                                    newCell.setAttribute("id", "Fecha" + i);//se asigna id al incrementar cada fila +1 para contar el encabezado
+                                }
+                                newCell.appendChild(newText);
+                                newCell.style.backgroundColor = "#a9a5a4  "; //gris
+                            }
+                    }
+                }// j data
+            }
+        })
+    }
+
+  
+    //alert("Pendientes: " + total + 'Nomina'+tabla.rows[1].cells[2].childNodes[0].nodeValue);
+    
 }

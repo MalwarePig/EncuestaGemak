@@ -54,7 +54,8 @@ router.get('/TablaB/:Area', EncuestaController.TablaB);
 router.get('/SearchAreaMorelos:Nomina', EncuestaController.AreaM);
 router.get('/SearchAreaBravo:Nomina', EncuestaController.AreaB);
 router.get('/AreaBravo', EncuestaController.AreaB);
-router.get('/Pendientes/:Planta', EncuestaController.Pendientes);
+router.get('/PendientesMorelos/:Area', EncuestaController.PendientesMorelos);
+router.get('/PendientesBravo/:Area', EncuestaController.PendientesBravo);
 router.get('/ReporteM', (req, res) => {
     //res.send('holoo');
     res.render('Rep_Gemak.html');
