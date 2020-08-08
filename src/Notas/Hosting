@@ -7,7 +7,7 @@
 > git status //verificar archivos a subir
 > git add .  //Agrega todos los archivos listos a subir
 > git status //verificar archivos a subir, deben verse en verde
-> heroku git:remote -a app-embebidos //Seleccionar el espacio de heroku donde se debe subir
+> heroku git:remote -a app-gemak //Seleccionar el espacio de heroku donde se debe subir
 > git commit -m "Mensaje de referencia" //comando para subir al servidor
 > git push heroku master //Inicia la subida de archivos a servidor
 > heroku open //Iniciar aplicacion

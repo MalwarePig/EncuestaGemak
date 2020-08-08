@@ -15,8 +15,8 @@ function Tabla() {
                     let Nomina = data[i].Nomina;
                     let Planta = data[i].Planta;
                     let Fecha = data[i].Fecha;
-                    Fecha.getTimezoneOffset();
-                    alert(Fecha);
+          
+                    console.log(Fecha);
                     let Motivo = [];
                     if (Aceptable == "Aceptado") {
                         Arreglo = [Aceptable, Nombre, Nomina, Planta, "N/A", Fecha];
