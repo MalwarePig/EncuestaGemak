@@ -306,7 +306,7 @@ function Fecha() {
     var tabla = document.getElementById('Registros').getElementsByTagName('tbody')[0];
     var total = tabla.rows.length//Total de filasa
     for (var j = 0; j < total; j++) {//filas
-        let Fecha = tabla.rows[j].cells[5].childNodes[0].nodeValue;
+        let Fecha =  new Date(tabla.rows[j].cells[5].childNodes[0].nodeValue);
         console.log('Fecha tabla ' + Fecha);
         var dd = Fecha.getDate();
         var mm = Fecha.getMonth() + 1;
@@ -320,7 +320,7 @@ function Fecha() {
         if (mm < 10) {
             mm = '0' + mm;
         }
-        var today = yyyy + '/' + mm + '/' + dd + " " + HH + ':' + mi;
+        var today = yyyy + '/' + mm + '/' + dd;
         document.getElementById("Fecha" + j).innerHTML = today;
         console.log('Fecha Funcion ' + today);
     }//fin filas
