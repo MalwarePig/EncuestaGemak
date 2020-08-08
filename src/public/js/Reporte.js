@@ -6,7 +6,7 @@ function Tabla() {
 
     if (condicion > 0) { //si es morelos...
         $.ajax({
-            url: "/TablaM/"+Area,
+            url: "/TablaM/" + Area,
             success: function (data) {
 
                 for (var i = 0; i < data.length; i++) {
@@ -50,7 +50,7 @@ function Tabla() {
                         let PreguntaCinco = data[i].PreguntaCinco;
                         let PreguntaCincoText = data[i].PreguntaCincoText;
 
-                       
+
                         if (Declaratoria == "No") {
                             Motivo.push("Declaracion: " + Declaratoria);
                         }
@@ -71,8 +71,8 @@ function Tabla() {
                         if (Garganta == "Si") { Motivo.push("Dolor de garganta"); }
                         if (Cuerpo == "Si") { Motivo.push("Dolor de cuerpo"); }
                         if (Cabeza == "Si") { Motivo.push("Dolor inusual de cabeza"); }
-                       // alert(Nombre + Motivo.join()+ 'Sintomas ' + Declaratoria+PreguntaUno+PreguntaDos+PreguntaTres+'tos'+Tos+'Fiebre'+Fiebre+'Respirar'+Respirar+'gusto'+Gusto+'Garganta'+Garganta+'cuerpo'+Cuerpo+'cabeza'+Cabeza);
-                        
+                        // alert(Nombre + Motivo.join()+ 'Sintomas ' + Declaratoria+PreguntaUno+PreguntaDos+PreguntaTres+'tos'+Tos+'Fiebre'+Fiebre+'Respirar'+Respirar+'gusto'+Gusto+'Garganta'+Garganta+'cuerpo'+Cuerpo+'cabeza'+Cabeza);
+
                         Arreglo = [Aceptable, Nombre, Nomina, Planta, Motivo.join(), Fecha];
                         var Tabla = document.getElementById('Registros').getElementsByTagName('tbody')[0];
                         // inserta una fila al final de la tabla
@@ -148,6 +148,7 @@ function Tabla() {
                 }//Ciclo de todo los registros
                 Fecha();
                 Color();
+                Pendientes();
             }//Funcion success
         })
     }//if Morelos
@@ -293,9 +294,11 @@ function Tabla() {
                 }//Ciclo de todo los registros
                 Fecha();
                 Color();
+                Pendientes();
             }//Funcion success
         })
     }//else Bravo
+
 }
 
 function Fecha() {
@@ -336,20 +339,70 @@ function Modal() {
     //setTimeout("location.reload()", 3000);
 }
 
-function Excel(){
+function Excel() {
     var table = document.getElementById("Registros");
     var total = table.rows.length;//Total de filas
-console.log(total);
+    console.log(total);
     var tabla = document.getElementById("Registros");
     var wb = XLSX.utils.table_to_book(tabla, { sheet: "Reporte" });
     var wbout = XLSX.write(wb, { bookType: 'xlsx', bookSST: true, type: 'binary' });
     function s2ab(s) {
-      var buf = new ArrayBuffer(s.length);
-      var view = new Uint8Array(buf);
-      for (var i = 0; i < s.length; i++) view[i] = s.charCodeAt(i) & 0xFF;
-      return buf;
+        var buf = new ArrayBuffer(s.length);
+        var view = new Uint8Array(buf);
+        for (var i = 0; i < s.length; i++) view[i] = s.charCodeAt(i) & 0xFF;
+        return buf;
     }
     saveAs(new Blob([s2ab(wbout)], { type: "application/octet-stream" }), 'Reporte_Covid.xlsx');
-    
-    
+}
+
+function Pendientes() {
+
+    var url = window.location.href;
+    var Condicion = url.indexOf("ReporteM");
+    var Planta = "";
+    if (Condicion > 0) {
+        Planta = "Morelos";
+    } else {
+        Planta = "Bravo"
+    }
+
+    var tabla = document.getElementById("Registros");
+    var total = tabla.rows.length//Total de filas
+    //alert("Pendientes: " + total + 'Nomina'+tabla.rows[1].cells[2].childNodes[0].nodeValue);
+    $.ajax({
+        url: '/Pendientes/' + Planta,
+        success: function (data) {
+            
+            for (var j = 0; j < data.length; j++) {
+                var existencia = false;
+                var Nombre = data[j].Nombre;
+                var Nomina = data[j].Nomina;
+                var Planta = data[j].Planta;
+                for (var i = 1; i <= total - 1; i++) {
+                    if (tabla.rows[i].cells[2].childNodes[0].nodeValue == Nomina) {
+                        existencia = true;
+                    }
+                }// i Tabla
+                if(existencia == false){
+                   //alert('falta' + Nomina)
+                   Arreglo = ['Sin registro', Nombre, Nomina, Planta, '-', '-'];
+                        var Tabla = document.getElementById('Registros').getElementsByTagName('tbody')[0];
+                        // inserta una fila al final de la tabla
+                        var newRow = Tabla.insertRow(Tabla.rows.length);
+                        for (var x = 0; x < Arreglo.length; x++) {
+                            // inserta una celda en el indice 0
+                            var newCell = newRow.insertCell(x);
+                            newRow.setAttribute("id", "Fila" + j);//se asigna id al incrementar cada fila +1 para contar el encabezado
+                            // adjuntar el texto al nodo
+                            var newText = document.createTextNode(Arreglo[x]);
+                            if (x == 5) {
+                                newCell.setAttribute("id", "Fecha" + i);//se asigna id al incrementar cada fila +1 para contar el encabezado
+                            }
+                            newCell.appendChild(newText);
+                            newCell.style.backgroundColor = "#a9a5a4  "; //gris
+                        }
+                }
+            }// j data
+        }
+    })
 }

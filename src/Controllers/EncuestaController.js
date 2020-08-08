@@ -168,5 +168,22 @@ Controller.AreaB = (req, res) => {
 };
 
 
+Controller.Pendientes = (req, res) => {
+    req.getConnection((err, conn) => {
+        if (err) {
+            console.log("Conexion: " + err)
+        }
+        const { Planta } = req.params;
+        conn.query("SELECT * from Pivote Where Planta = '"+Planta + "'", (err, Area) => {
+            if (err) {
+                res.json("Error json: " + err);
+                console.log('Error de lectura');
+            }
+            console.log(Area);
+            res.json(Area);
+        });
+    });
+};
+
 
 module.exports = Controller;
