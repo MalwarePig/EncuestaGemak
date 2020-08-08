@@ -16,7 +16,7 @@ function Tabla() {
                     let Planta = data[i].Planta;
                     let Fecha = data[i].Fecha;
           
-                    console.log('Fecha Tabla: ' +Fecha);
+                    console.log('Fecha Tabla: ' + Nomina + ' ' +Fecha);
                     let Motivo = [];
                     if (Aceptable == "Aceptado") {
                         Arreglo = [Aceptable, Nombre, Nomina, Planta, "N/A", Fecha];
@@ -307,11 +307,11 @@ function Fecha() {
     var tabla = document.getElementById('Registros').getElementsByTagName('tbody')[0];
     var total = tabla.rows.length//Total de filasa
     for (var j = 0; j < total; j++) {//filas
-        console.log("Fila: " + j - 1)
+        let Nombre = tabla.rows[j].cells[2].childNodes[0].nodeValue;
         let Fecha = tabla.rows[j].cells[5].childNodes[0].nodeValue;
-        console.log('Fecha Moment: ' +Fecha);
+        console.log('Fecha Moment: ' +Nombre + ' ' + Fecha);
         document.getElementById("Fecha" + j).innerHTML = moment(Fecha).format('DD/MM/YYYY');
-        console.log("Fila " + j - 1)
+        console.log('Fecha Moment final: ' +Nombre + ' ' + moment(Fecha).format('DD/MM/YYYY'));
     }//fin filas
 }
 
@@ -322,7 +322,6 @@ function Color() {
         let Condicion = "";
         for (var j = 0; j < total; j++) {//filas
             Condicion = tabla.rows[j].cells[0].childNodes[0].nodeValue;
-            console.log(j + Condicion);
             if (Condicion == "Aceptado") {
                 document.getElementById("Fila" + j).style.backgroundColor = " #b5d687 "; //Verde
             } else if (Condicion == "Negado") {
