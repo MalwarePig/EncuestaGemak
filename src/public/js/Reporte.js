@@ -309,7 +309,7 @@ function Fecha() {
     for (var j = 0; j < total; j++) {//filas
         console.log("Fila: " + j - 1)
         let Fecha = tabla.rows[j].cells[5].childNodes[0].nodeValue;
-        document.getElementById("Fecha" + j).innerHTML = moment(Fecha).format('MM/DD/YYYY');
+        document.getElementById("Fecha" + j).innerHTML = moment(Fecha).format('DD/MM/YYYY');
         console.log("Fila " + j - 1)
     }//fin filas
 }
