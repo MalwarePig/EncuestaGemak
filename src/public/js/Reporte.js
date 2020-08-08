@@ -15,8 +15,7 @@ function Tabla() {
                     let Nomina = data[i].Nomina;
                     let Planta = data[i].Planta;
                     let Fecha = data[i].Fecha;
-          
-                    console.log('Fecha Tabla: ' + Nomina + ' ' +Fecha);
+
                     let Motivo = [];
                     if (Aceptable == "Aceptado") {
                         Arreglo = [Aceptable, Nombre, Nomina, Planta, "N/A", Fecha];
@@ -307,11 +306,8 @@ function Fecha() {
     var tabla = document.getElementById('Registros').getElementsByTagName('tbody')[0];
     var total = tabla.rows.length//Total de filasa
     for (var j = 0; j < total; j++) {//filas
-        let Nombre = tabla.rows[j].cells[2].childNodes[0].nodeValue;
         let Fecha = tabla.rows[j].cells[5].childNodes[0].nodeValue;
-        console.log('Fecha Moment: ' +Nombre + ' ' + Fecha);
-        document.getElementById("Fecha" + j).innerHTML = moment(Fecha).format('DD/MM/YYYY');
-        console.log('Fecha Moment final: ' +Nombre + ' ' + moment(Fecha).format('DD/MM/YYYY'));
+        document.getElementById("Fecha" + j).innerHTML = FormtatoFechas(Fecha);
     }//fin filas
 }
 
@@ -446,4 +442,24 @@ function Pendientes() {
   
     //alert("Pendientes: " + total + 'Nomina'+tabla.rows[1].cells[2].childNodes[0].nodeValue);
     
+}
+
+/*==========================================    FORMTATO DE FECHA    ==========================================================================
+===============================================================================================================================================*/
+function FormtatoFechas(Fecha){
+    var today = new Date(Fecha); 
+    var dd = today.getDate(); 
+    var mm = today.getMonth() + 1; 
+    var yyyy = today.getFullYear(); 
+    var HH = today.getHours();
+    var mi = today.getMinutes();
+
+    if (dd < 10) { 
+        dd = '0' + dd; 
+    }
+    if (mm < 10) { 
+        mm = '0' + mm; 
+    }
+    var today =  dd+ '/' + mm + '/' + yyyy; 
+    return today;
 }
