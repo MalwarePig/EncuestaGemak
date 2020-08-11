@@ -155,7 +155,7 @@ function Tabla() {
     }//if Morelos
     else {//si es Bravo
         $.ajax({
-            url: '/TablaB',
+            url: "/TablaB/" + Area,
             success: function (data) {
 
                 for (var i = 0; i < data.length; i++) {
@@ -164,6 +164,8 @@ function Tabla() {
                     let Nomina = data[i].Nomina;
                     let Planta = data[i].Planta;
                     let Fecha = data[i].Fecha;
+
+                    let Motivo = [];
                     if (Aceptable == "Aceptado") {
                         Arreglo = [Aceptable, Nombre, Nomina, Planta, "N/A", Fecha];
                         var Tabla = document.getElementById('Registros').getElementsByTagName('tbody')[0];
@@ -182,7 +184,6 @@ function Tabla() {
                         }
                     }//Aceptados
                     if (Aceptable == "Negado") {
-
                         let Declaratoria = data[i].Declaratoria;
                         let PreguntaUno = data[i].PreguntaUno;
                         let PreguntaDos = data[i].PreguntaDos;
@@ -198,6 +199,7 @@ function Tabla() {
                         let Cabeza = data[i].Cabeza;
                         let PreguntaCinco = data[i].PreguntaCinco;
                         let PreguntaCincoText = data[i].PreguntaCincoText;
+
 
                         if (Declaratoria == "No") {
                             Motivo.push("Declaracion: " + Declaratoria);
@@ -219,6 +221,7 @@ function Tabla() {
                         if (Garganta == "Si") { Motivo.push("Dolor de garganta"); }
                         if (Cuerpo == "Si") { Motivo.push("Dolor de cuerpo"); }
                         if (Cabeza == "Si") { Motivo.push("Dolor inusual de cabeza"); }
+                        // alert(Nombre + Motivo.join()+ 'Sintomas ' + Declaratoria+PreguntaUno+PreguntaDos+PreguntaTres+'tos'+Tos+'Fiebre'+Fiebre+'Respirar'+Respirar+'gusto'+Gusto+'Garganta'+Garganta+'cuerpo'+Cuerpo+'cabeza'+Cabeza);
 
                         Arreglo = [Aceptable, Nombre, Nomina, Planta, Motivo.join(), Fecha];
                         var Tabla = document.getElementById('Registros').getElementsByTagName('tbody')[0];

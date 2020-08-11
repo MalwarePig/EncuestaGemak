@@ -118,16 +118,40 @@ Controller.TablaM = (req, res) => {
 Controller.TablaB = (req, res) => {
     //res.send('Metodo Get list');
     req.getConnection((err, conn) => {
+        const { Area } = req.params;
+        console.log("Si carga controler: " + Area);
         if (err) {
             console.log("Conexion: " + err)
         }
-        conn.query("SELECT * FROM Encuesta WHERE Planta = 'Bravo' order by Aceptable,Nomina", (err, data) => {
-            if (err) {
-                res.json("Error json: " + err);
-                console.log('Error de lectura');
-            }
-            res.json(data);
-        });
+        if (Area == 'Morelos') {
+            conn.query("SELECT * FROM Encuesta WHERE Planta = 'Morelos' and Fecha = CURDATE() order by Aceptable,Nomina", (err, data) => {
+                if (err) {
+                    res.json("Error json: " + err);
+                    console.log('Error de lectura');
+                }
+                console.log(data)
+                res.json(data);
+            });
+        } else if (Area == 'Bravo') {
+            conn.query("SELECT * FROM Encuesta WHERE Planta = 'Bravo' and Fecha = CURDATE() order by Aceptable,Nomina", (err, data) => {
+                if (err) {
+                    res.json("Error json: " + err);
+                    console.log('Error de lectura');
+                }
+                console.log(data)
+                res.json(data);
+            });
+        } else {
+            conn.query("SELECT * FROM Encuesta WHERE Planta = 'Bravo' and Fecha = CURDATE() AND Area = '" + Area + "' order by Aceptable,Nomina", (err, data) => {
+                if (err) {
+                    res.json("Error json: " + err);
+                    console.log('Error de lectura');
+                }
+                console.log(data)
+                res.json(data);
+            });
+        }
+
     });
 };
 
