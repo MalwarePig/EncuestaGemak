@@ -81,11 +81,13 @@ Controller.TablaM = (req, res) => {
     //res.send('Metodo Get list');
     req.getConnection((err, conn) => {
         const { Area } = req.params;
+        var fecha = moment().format("YYYY-MM-DD");
+        console.log('fecha de consulta' +fecha);
         if (err) {
             console.log("Conexion: " + err)
         }
         if (Area == 'Morelos') {
-            conn.query("SELECT * FROM Encuesta WHERE Planta = 'Morelos' and Fecha = '"+ moment().format("YYYY-MM-DD") +"' order by Aceptable,Nomina", (err, data) => {
+            conn.query("SELECT * FROM Encuesta WHERE Planta = 'Morelos' and Fecha = '"+ fecha +"' order by Aceptable,Nomina", (err, data) => {
                 if (err) {
                     res.json("Error json: " + err);
                     console.log('Error de lectura');
@@ -94,7 +96,7 @@ Controller.TablaM = (req, res) => {
                 res.json(data);
             });
         } else if (Area == 'Bravo') {
-            conn.query("SELECT * FROM Encuesta WHERE Planta = 'Bravo' and Fecha ='"+ moment().format("YYYY-MM-DD") +"' order by Aceptable,Nomina", (err, data) => {
+            conn.query("SELECT * FROM Encuesta WHERE Planta = 'Bravo' and Fecha ='"+ fecha +"' order by Aceptable,Nomina", (err, data) => {
                 if (err) {
                     res.json("Error json: " + err);
                     console.log('Error de lectura');
@@ -103,7 +105,7 @@ Controller.TablaM = (req, res) => {
                 res.json(data);
             });
         } else {
-            conn.query("SELECT * FROM Encuesta WHERE Planta = 'Morelos' and Fecha = '"+ moment().format("YYYY-MM-DD") +"' AND Area = '" + Area + "' order by Aceptable,Nomina", (err, data) => {
+            conn.query("SELECT * FROM Encuesta WHERE Planta = 'Morelos' and Fecha = '"+ fecha +"' AND Area = '" + Area + "' order by Aceptable,Nomina", (err, data) => {
                 if (err) {
                     res.json("Error json: " + err);
                     console.log('Error de lectura');
@@ -120,12 +122,14 @@ Controller.TablaB = (req, res) => {
     //res.send('Metodo Get list');
     req.getConnection((err, conn) => {
         const { Area } = req.params;
+        var fecha = moment().format("YYYY-MM-DD");
+        console.log('fecha de consulta' +fecha);
         console.log("Si carga controler: " + Area);
         if (err) {
             console.log("Conexion: " + err)
         }
         if (Area == 'Morelos') {
-            conn.query("SELECT * FROM Encuesta WHERE Planta = 'Morelos' and Fecha = '"+ moment().format("YYYY-MM-DD") +"' order by Aceptable,Nomina", (err, data) => {
+            conn.query("SELECT * FROM Encuesta WHERE Planta = 'Morelos' and Fecha = '"+ fecha +"' order by Aceptable,Nomina", (err, data) => {
                 if (err) {
                     res.json("Error json: " + err);
                     console.log('Error de lectura');
@@ -134,7 +138,7 @@ Controller.TablaB = (req, res) => {
                 res.json(data);
             });
         } else if (Area == 'Bravo') {
-            conn.query("SELECT * FROM Encuesta WHERE Planta = 'Bravo' and Fecha = '"+ moment().format("YYYY-MM-DD") +"' order by Aceptable,Nomina", (err, data) => {
+            conn.query("SELECT * FROM Encuesta WHERE Planta = 'Bravo' and Fecha = '"+ fecha +"' order by Aceptable,Nomina", (err, data) => {
                 if (err) {
                     res.json("Error json: " + err);
                     console.log('Error de lectura');
@@ -143,7 +147,7 @@ Controller.TablaB = (req, res) => {
                 res.json(data);
             });
         } else {
-            conn.query("SELECT * FROM Encuesta WHERE Planta = 'Bravo' and Fecha = '"+ moment().format("YYYY-MM-DD") +"' AND Area = '" + Area + "' order by Aceptable,Nomina", (err, data) => {
+            conn.query("SELECT * FROM Encuesta WHERE Planta = 'Bravo' and Fecha = '"+ fecha +"' AND Area = '" + Area + "' order by Aceptable,Nomina", (err, data) => {
                 if (err) {
                     res.json("Error json: " + err);
                     console.log('Error de lectura');
