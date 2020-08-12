@@ -8,7 +8,7 @@ CREATE USER 'foo'@'%' IDENTIFIED WITH mysql_native_password BY 'bar';
 FLUSH PRIVILEGES;
 
 
-
+SET SQL_SAFE_UPDATES = 0;
 ------------------------------------------------------------------------------
 
   1  Entrar al directorio del proyecto

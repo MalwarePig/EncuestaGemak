@@ -49,8 +49,8 @@ router.get('/Admin', (req, res) => {
 /////////////////////////////////////////////////////////////////////////// MENU ADMIN //////////////////////////////////////////////////////////////////////////////
 //Guardar Encuesta
 router.post('/GuardarEncuesta', EncuestaController.GuardarEncuesta);
-router.get('/TablaM/:Area', EncuestaController.TablaM);
-router.get('/TablaB/:Area', EncuestaController.TablaB);
+router.get('/TablaM/:Variable', EncuestaController.TablaM);
+router.get('/TablaB/:Variable', EncuestaController.TablaB);
 router.get('/SearchAreaMorelos:Nomina', EncuestaController.AreaM);
 router.get('/SearchAreaBravo:Nomina', EncuestaController.AreaB);
 router.get('/AreaBravo', EncuestaController.AreaB);

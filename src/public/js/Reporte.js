@@ -3,10 +3,11 @@ function Tabla() {
     var Planta = window.location.href;
     var condicion = Planta.indexOf("ReporteM");
     let Area = document.getElementById("Area").value;
-  
+    var FechaLocal = moment().format("YYYY-MM-DD");
+ 
     if (condicion > 0) { //si es morelos...
         $.ajax({
-            url: "/TablaM/" + Area,
+            url: "/TablaM/"+ Area + " " + FechaLocal,
             success: function (data) {
 
                 for (var i = 0; i < data.length; i++) {
@@ -155,7 +156,7 @@ function Tabla() {
     }//if Morelos
     else {//si es Bravo
         $.ajax({
-            url: "/TablaB/" + Area,
+            url: "/TablaM/"+ Area + " " + FechaLocal,
             success: function (data) {
 
                 for (var i = 0; i < data.length; i++) {
