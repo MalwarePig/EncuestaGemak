@@ -14,7 +14,7 @@ function GuardarEncuesta() {
           $.ajax({
                url: "/SearchAreaMorelos"+ document.getElementById("Nomina").value,
                success: function (Area) {
-                   console.log(Area[0].Area);
+                
                    Area = Area[0].Area;
                    Guardado(Planta,Area);
                }//Funcion success
@@ -63,7 +63,7 @@ function Guardado(Planta,Area){
      let Cabeza = "";
      let Contador = 0;
      let Acceso = "Aceptado";
-
+     var Fecha = moment().format("YYYY-MM-DD");
      console.log(PreguntaUno, PreguntaDos, PreguntaTres, PreguntaCinco);
 
      if (PreguntaUno == undefined || PreguntaDos == undefined || PreguntaTres == undefined || PreguntaCinco == undefined || Declaratoria == undefined) {
@@ -150,7 +150,8 @@ function Guardado(Planta,Area){
           Acceso: Acceso,
           Declaratoria: Declaratoria,
           PreguntaSeis: PreguntaSeis,
-          Area : Area
+          Area : Area,
+          Fecha : Fecha
      }
 
      $.post("/GuardarEncuesta", // url
