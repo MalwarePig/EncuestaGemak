@@ -297,7 +297,7 @@ function Tabla() {
                         }
                     }//Preventivo
                 }//Ciclo de todo los registros
-                Fecha();
+                //Fecha();
                 Color();
                 Pendientes();
             }//Funcion success
