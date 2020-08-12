@@ -3,7 +3,7 @@ function Tabla() {
     var Planta = window.location.href;
     var condicion = Planta.indexOf("ReporteM");
     let Area = document.getElementById("Area").value;
-
+  
     if (condicion > 0) { //si es morelos...
         $.ajax({
             url: "/TablaM/" + Area,
@@ -311,7 +311,7 @@ function Fecha() {
     for (var j = 0; j < total; j++) {//filas
         let Fecha =  new Date(tabla.rows[j].cells[5].childNodes[0].nodeValue);
         console.log('Fecha tabla ' + Fecha);
-        var dd = Fecha.getDate()+1;
+        var dd = Fecha.getDate();
         var mm = Fecha.getMonth() + 1;
         var yyyy = Fecha.getFullYear();
         var HH = Fecha.getHours();
@@ -467,7 +467,7 @@ function Pendientes() {
 function FormtatoFechas(Fecha) {
     var today = new Date(Fecha);
     var dd = today.getDate();
-    var mm = today.getMonth() + 1;
+    var mm = today.getMonth();
     var yyyy = today.getFullYear();
     var HH = today.getHours();
     var mi = today.getMinutes();

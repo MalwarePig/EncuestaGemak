@@ -1,4 +1,5 @@
 const Controller = {};
+var moment = require('moment'); // require
 const express = require('express');//guardar express en una variable de servidor
 
 Controller.GuardarEncuesta = (req, res) => {
@@ -84,7 +85,7 @@ Controller.TablaM = (req, res) => {
             console.log("Conexion: " + err)
         }
         if (Area == 'Morelos') {
-            conn.query("SELECT * FROM Encuesta WHERE Planta = 'Morelos' and Fecha = CURDATE() order by Aceptable,Nomina", (err, data) => {
+            conn.query("SELECT * FROM Encuesta WHERE Planta = 'Morelos' and Fecha = '"+ moment().format("YYYY-MM-DD") +"' order by Aceptable,Nomina", (err, data) => {
                 if (err) {
                     res.json("Error json: " + err);
                     console.log('Error de lectura');
@@ -93,7 +94,7 @@ Controller.TablaM = (req, res) => {
                 res.json(data);
             });
         } else if (Area == 'Bravo') {
-            conn.query("SELECT * FROM Encuesta WHERE Planta = 'Bravo' and Fecha = CURDATE() order by Aceptable,Nomina", (err, data) => {
+            conn.query("SELECT * FROM Encuesta WHERE Planta = 'Bravo' and Fecha ='"+ moment().format("YYYY-MM-DD") +"' order by Aceptable,Nomina", (err, data) => {
                 if (err) {
                     res.json("Error json: " + err);
                     console.log('Error de lectura');
@@ -102,7 +103,7 @@ Controller.TablaM = (req, res) => {
                 res.json(data);
             });
         } else {
-            conn.query("SELECT * FROM Encuesta WHERE Planta = 'Morelos' and Fecha = CURDATE() AND Area = '" + Area + "' order by Aceptable,Nomina", (err, data) => {
+            conn.query("SELECT * FROM Encuesta WHERE Planta = 'Morelos' and Fecha = '"+ moment().format("YYYY-MM-DD") +"' AND Area = '" + Area + "' order by Aceptable,Nomina", (err, data) => {
                 if (err) {
                     res.json("Error json: " + err);
                     console.log('Error de lectura');
@@ -124,7 +125,7 @@ Controller.TablaB = (req, res) => {
             console.log("Conexion: " + err)
         }
         if (Area == 'Morelos') {
-            conn.query("SELECT * FROM Encuesta WHERE Planta = 'Morelos' and Fecha = CURDATE() order by Aceptable,Nomina", (err, data) => {
+            conn.query("SELECT * FROM Encuesta WHERE Planta = 'Morelos' and Fecha = '"+ moment().format("YYYY-MM-DD") +"' order by Aceptable,Nomina", (err, data) => {
                 if (err) {
                     res.json("Error json: " + err);
                     console.log('Error de lectura');
@@ -133,7 +134,7 @@ Controller.TablaB = (req, res) => {
                 res.json(data);
             });
         } else if (Area == 'Bravo') {
-            conn.query("SELECT * FROM Encuesta WHERE Planta = 'Bravo' and Fecha = CURDATE() order by Aceptable,Nomina", (err, data) => {
+            conn.query("SELECT * FROM Encuesta WHERE Planta = 'Bravo' and Fecha = '"+ moment().format("YYYY-MM-DD") +"' order by Aceptable,Nomina", (err, data) => {
                 if (err) {
                     res.json("Error json: " + err);
                     console.log('Error de lectura');
@@ -142,7 +143,7 @@ Controller.TablaB = (req, res) => {
                 res.json(data);
             });
         } else {
-            conn.query("SELECT * FROM Encuesta WHERE Planta = 'Bravo' and Fecha = CURDATE() AND Area = '" + Area + "' order by Aceptable,Nomina", (err, data) => {
+            conn.query("SELECT * FROM Encuesta WHERE Planta = 'Bravo' and Fecha = '"+ moment().format("YYYY-MM-DD") +"' AND Area = '" + Area + "' order by Aceptable,Nomina", (err, data) => {
                 if (err) {
                     res.json("Error json: " + err);
                     console.log('Error de lectura');
