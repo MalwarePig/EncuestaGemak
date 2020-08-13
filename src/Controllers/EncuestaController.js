@@ -32,11 +32,12 @@ Controller.GuardarEncuesta = (req, res) => {
         let PreguntaSeis = Object.values(data)[19];//obeter datos de un objeto FolioPreguntaSeis
         let Area = Object.values(data)[20];//obeter datos de un objeto FolioPreguntaSeis
         let Fecha = Object.values(data)[21];//obeter datos de un objeto FolioPreguntaSeis
+        let Horario = Object.values(data)[22];//obeter datos de un objeto FolioPreguntaSeis
 
 
         //console.log('Insert todos los datos: ' + 'Nombre' + Nombre + 'Nomina' + Nomina + 'Planta' + Planta + PreguntaUno + PreguntaDos + PreguntaDosText + PreguntaTres + PreguntaTresText +
           //  'Tos' + Tos + 'Fiebre' + Fiebre + 'Respirar' + Respirar + 'Gusto' + Gusto + 'gargant' + Garganta + Cuerpo + 'Cabeza' + Cabeza + Aceptable + Area +Fecha);
-        conn.query('INSERT INTO Encuesta(Nombre,Nomina,Planta,PreguntaUno,PreguntaDos,PreguntaDosText,PreguntaTres,PreguntaTresText,Tos,Fiebre,Respirar,Gusto,Garganta,Cuerpo,Cabeza,PreguntaCinco,PreguntaCincoText,Aceptable,Declaratoria,PreguntaSeis,Area,Fecha)values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)', [Nombre, Nomina, Planta, PreguntaUno, PreguntaDos, PreguntaDosText, PreguntaTres, PreguntaTresText, Tos, Fiebre, Respirar, Gusto, Garganta, Cuerpo, Cabeza, PreguntaCinco, PreguntaCincoText, Aceptable, Declaratoria, PreguntaSeis, Area,Fecha], (err, ot) => {
+        conn.query('INSERT INTO Encuesta(Nombre,Nomina,Planta,PreguntaUno,PreguntaDos,PreguntaDosText,PreguntaTres,PreguntaTresText,Tos,Fiebre,Respirar,Gusto,Garganta,Cuerpo,Cabeza,PreguntaCinco,PreguntaCincoText,Aceptable,Declaratoria,PreguntaSeis,Area,Fecha, Horario)values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)', [Nombre, Nomina, Planta, PreguntaUno, PreguntaDos, PreguntaDosText, PreguntaTres, PreguntaTresText, Tos, Fiebre, Respirar, Gusto, Garganta, Cuerpo, Cabeza, PreguntaCinco, PreguntaCincoText, Aceptable, Declaratoria, PreguntaSeis, Area,Fecha,Horario], (err, ot) => {
             if (err) {
                 res.json("Error json: " + err);
                 console.log('Error al registrar despacho de herramienta' + err);
@@ -85,13 +86,14 @@ Controller.TablaM = (req, res) => {
         const { Variable } = req.params;
         Area = Variable.split(' ')[0]; // "Fecha"
         fecha = Variable.split(' ')[1]; // "Fecha"
-        console.log(Variable + ' consulta ' +fecha + " " + Area);
+        Horario = Variable.split(' ')[2]; // "Fecha"
+        console.log(Variable + ' consulta ' +fecha + " " + Area+ " "+ Horario);
 
         if (err) {
             console.log("Conexion: " + err)
         }
         if (Area == 'Morelos') {
-            conn.query("SELECT * FROM Encuesta WHERE Planta = 'Morelos' and Fecha = '"+ fecha +"' order by Aceptable,Nomina", (err, data) => {
+            conn.query("SELECT * FROM Encuesta WHERE Planta = 'Morelos' and Fecha = '"+ fecha +"' and Horario ='" + Horario +"' order by Aceptable,Nomina", (err, data) => {
                 if (err) {
                     res.json("Error json: " + err);
                     console.log('Error de lectura');
@@ -100,7 +102,7 @@ Controller.TablaM = (req, res) => {
                 res.json(data);
             });
         } else if (Area == 'Bravo') {
-            conn.query("SELECT * FROM Encuesta WHERE Planta = 'Bravo' and Fecha ='"+ fecha +"' order by Aceptable,Nomina", (err, data) => {
+            conn.query("SELECT * FROM Encuesta WHERE Planta = 'Bravo' and Fecha ='"+ fecha +"' and Horario ='" + Horario +"' order by Aceptable,Nomina", (err, data) => {
                 if (err) {
                     res.json("Error json: " + err);
                     //console.log('Error de lectura');
@@ -109,7 +111,7 @@ Controller.TablaM = (req, res) => {
                 res.json(data);
             });
         } else {
-            conn.query("SELECT * FROM Encuesta WHERE Planta = 'Morelos' and Fecha = '"+ fecha +"' AND Area = '" + Area + "' order by Aceptable,Nomina", (err, data) => {
+            conn.query("SELECT * FROM Encuesta WHERE Planta = 'Morelos' and Fecha = '"+ fecha +"' AND Area = '" + Area + "' and Horario ='" + Horario +"' order by Aceptable,Nomina", (err, data) => {
                 if (err) {
                     res.json("Error json: " + err);
                     console.log('Error de lectura');
@@ -118,7 +120,6 @@ Controller.TablaM = (req, res) => {
                 res.json(data);
             });
         }
-
     });
 };
 
@@ -128,13 +129,14 @@ Controller.TablaB = (req, res) => {
         const { Variable } = req.params;
         Area = Variable.split(' ')[0]; // "Fecha"
         fecha = Variable.split(' ')[1]; // "Fecha"
-        console.log(Variable + ' consulta ' +fecha + " " + Area);
+        Horario = Variable.split(' ')[2]; // "Fecha"
+        console.log(Variable + ' consulta ' +fecha + " " + Area+ " "+ Horario);
 
         if (err) {
             console.log("Conexion: " + err)
         }
         if (Area == 'Morelos') {
-            conn.query("SELECT * FROM Encuesta WHERE Planta = 'Morelos' and Fecha = '"+ fecha +"' order by Aceptable,Nomina", (err, data) => {
+            conn.query("SELECT * FROM Encuesta WHERE Planta = 'Morelos' and Fecha = '"+ fecha +"' and Horario ='" + Horario +"' order by Aceptable,Nomina", (err, data) => {
                 if (err) {
                     res.json("Error json: " + err);
                     console.log('Error de lectura');
@@ -143,7 +145,7 @@ Controller.TablaB = (req, res) => {
                 res.json(data);
             });
         } else if (Area == 'Bravo') {
-            conn.query("SELECT * FROM Encuesta WHERE Planta = 'Bravo' and Fecha = '"+ fecha +"' order by Aceptable,Nomina", (err, data) => {
+            conn.query("SELECT * FROM Encuesta WHERE Planta = 'Bravo' and Fecha = '"+ fecha +"' and Horario ='" + Horario +"' order by Aceptable,Nomina", (err, data) => {
                 if (err) {
                     res.json("Error json: " + err);
                     console.log('Error de lectura');
@@ -152,7 +154,7 @@ Controller.TablaB = (req, res) => {
                 res.json(data);
             });
         } else {
-            conn.query("SELECT * FROM Encuesta WHERE Planta = 'Bravo' and Fecha = '"+ fecha +"' AND Area = '" + Area + "' order by Aceptable,Nomina", (err, data) => {
+            conn.query("SELECT * FROM Encuesta WHERE Planta = 'Bravo' and Fecha = '"+ fecha +"' AND Area = '" + Area + "' and Horario ='" + Horario +"' order by Aceptable,Nomina", (err, data) => {
                 if (err) {
                     res.json("Error json: " + err);
                     console.log('Error de lectura');
@@ -161,10 +163,8 @@ Controller.TablaB = (req, res) => {
                 res.json(data);
             });
         }
-
     });
 };
-
 
 Controller.AreaM = (req, res) => {
     req.getConnection((err, conn) => {
@@ -183,7 +183,6 @@ Controller.AreaM = (req, res) => {
     });
 };
 
-
 Controller.AreaB = (req, res) => {
     req.getConnection((err, conn) => {
         if (err) {
@@ -200,7 +199,6 @@ Controller.AreaB = (req, res) => {
         });
     });
 };
-
 
 Controller.PendientesMorelos = (req, res) => {
     req.getConnection((err, conn) => {
@@ -238,8 +236,6 @@ Controller.PendientesMorelos = (req, res) => {
         }
     });
 };
-
-
 
 Controller.PendientesBravo = (req, res) => {
     req.getConnection((err, conn) => {

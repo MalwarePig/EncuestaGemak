@@ -4,10 +4,10 @@ function Tabla() {
     var condicion = Planta.indexOf("ReporteM");
     let Area = document.getElementById("Area").value;
     var FechaLocal = moment().format("YYYY-MM-DD");
- 
+    let Horario = document.getElementById("Horario").value;
     if (condicion > 0) { //si es morelos...
         $.ajax({
-            url: "/TablaM/"+ Area + " " + FechaLocal,
+            url: "/TablaM/"+ Area + " " + FechaLocal + " " + Horario,
             success: function (data) {
 
                 for (var i = 0; i < data.length; i++) {
@@ -65,6 +65,9 @@ function Tabla() {
                         if (PreguntaTres == "Si") {
                             Motivo.push("Sí estuvo en lugar concurrido: " + PreguntaTresText);
                         }
+                        if (PreguntaCinco == "Si") {
+                            Motivo.push("Sí estuvo en lugar concurrido: " + PreguntaCincoText);
+                        }
 
                         if (Tos == "Si") { Motivo.push("Tos"); }
                         if (Fiebre == "Si") { Motivo.push("Fiebre"); }
@@ -121,6 +124,9 @@ function Tabla() {
                         }
                         if (PreguntaTres == "Si") {
                             Motivo.push("Sí estuvo en lugar concurrido: " + PreguntaTresText);
+                        }
+                        if (PreguntaCinco == "Si") {
+                            Motivo.push("Sí estuvo en lugar concurrido: " + PreguntaCincoText);
                         }
 
                         if (Tos == "Si") { Motivo.push("Tos"); }
@@ -214,6 +220,9 @@ function Tabla() {
                         if (PreguntaTres == "Si") {
                             Motivo.push("Sí estuvo en lugar concurrido: " + PreguntaTresText);
                         }
+                        if (PreguntaCinco == "Si") {
+                            Motivo.push("Sí estuvo en lugar concurrido: " + PreguntaCincoText);
+                        }
 
                         if (Tos == "Si") { Motivo.push("Tos"); }
                         if (Fiebre == "Si") { Motivo.push("Fiebre"); }
@@ -271,6 +280,9 @@ function Tabla() {
                         if (PreguntaTres == "Si") {
                             Motivo.push("Sí estuvo en lugar concurrido: " + PreguntaTresText);
                         }
+                        if (PreguntaCinco == "Si") {
+                            Motivo.push("Sí estuvo en lugar concurrido: " + PreguntaCincoText);
+                        }
 
                         if (Tos == "Si") { Motivo.push("Tos"); }
                         if (Fiebre == "Si") { Motivo.push("Fiebre"); }
@@ -303,7 +315,6 @@ function Tabla() {
             }//Funcion success
         })
     }//else Bravo
-
 }
 
 function Fecha() {
@@ -457,10 +468,7 @@ function Pendientes() {
             }
         })
     }
-
-
     //alert("Pendientes: " + total + 'Nomina'+tabla.rows[1].cells[2].childNodes[0].nodeValue);
-
 }
 
 /*==========================================    FORMTATO DE FECHA    ==========================================================================

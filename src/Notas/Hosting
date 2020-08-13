@@ -2,7 +2,7 @@
 > heroku login
 
 ********************** Entrar en repositorio *****************************
-> cd C:\Users\womym\Desktop\NodeControl - FCFM - copia
+> cd C:\Users\Soporte\Documents\Proyectos web\Proyectos JavaScript\Encuesta
 > git init //para crear repositorio vacio a subir
 > git status //verificar archivos a subir
 > git add .  //Agrega todos los archivos listos a subir
