@@ -163,8 +163,9 @@ function Tabla() {
         })
     }//if Morelos
     else {//si es Bravo
+        let Area = document.getElementById("Area").value;
         $.ajax({
-            url: "/TablaM/"+ Area + " " + FechaLocal,
+            url: "/TablaB/"+ Area + " " + FechaLocal + " " + Horario,
             success: function (data) {
 
                 for (var i = 0; i < data.length; i++) {

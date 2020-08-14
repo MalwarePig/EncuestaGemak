@@ -1,12 +1,16 @@
+================================= CONFIGURAR GIT =========================================
+git congig --global user.email "xxxx"
+git congig --global user.name "xxxx"
+================================= COMANDOS GIT UP ========================================
 git init  >> Inicializar proyecto para git
 git status >> Muestra el estado de los archivos
 git add >> Agrega archivos para ser gestionados (add index.html o  add .)
 git commit -m "Mensaje" >> Crea un primer punto de control del codigo 
+git remote add origin https://github.com/MalwarePig/EncuestaGemak.git
+git push origin master (envia el proyecto al servidor)
+================================= COMANDOS GIT HERRAMIENTAS ==============================
 git checkout -- index.html (Regresa a la version anterior el archivo modificado)
 git diff index.html (Muestra las cambios entre versiones)
 
-
-git congig --global user.email "xxxx"
-git congig --global user.name "xxxx"
-
-git clone link (Descargar el repositorio)
+================================= COMANDOS GIT DOWN ======================================
+Git clone link (Descargar el repositorio)

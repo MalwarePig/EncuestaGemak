@@ -150,7 +150,7 @@ function Guardado(Planta,Area){
           PreguntaSeis: PreguntaSeis,
           Area : Area,
           Fecha : Fecha,
-          Horario: document.getElementById("Horario").value,
+          Horario: document.getElementById("Horario").value, 
      }
 
      $.post("/GuardarEncuesta", // url
