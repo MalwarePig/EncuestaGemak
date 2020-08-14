@@ -29,7 +29,6 @@ function GuardarEncuesta() {
                }//Funcion success
           });//Ajax 
      }
-    
 }
 
 
@@ -39,7 +38,6 @@ function Reiniciar() {
 }
 
 function Guardado(Planta,Area){
-
      let Declaratoria = $('input[name="Declaratoria"]:checked').val();
      let PreguntaUno = $('input[name="pregunta1"]:checked').val();
      let PreguntaDos = $('input[name="pregunta2"]:checked').val();

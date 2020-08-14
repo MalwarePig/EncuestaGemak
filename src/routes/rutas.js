@@ -45,7 +45,6 @@ router.get('/Admin', (req, res) => {
 	res.end();
 });
 
-
 /////////////////////////////////////////////////////////////////////////// MENU ADMIN //////////////////////////////////////////////////////////////////////////////
 //Guardar Encuesta
 router.post('/GuardarEncuesta', EncuestaController.GuardarEncuesta);
@@ -65,7 +64,10 @@ router.get('/ReporteB', (req, res) => {
     res.render('Rep_Gemak.html');
 });
 
-
+router.get('/Historial', (req, res) => {
+    //res.send('holoo');
+    res.render('Historial.html');
+});
 
 
 module.exports = router;

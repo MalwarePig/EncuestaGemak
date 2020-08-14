@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>
+        GEMAK
+    </title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <%- include ('partials/head.html') %>
+    <!------incluir cabezera navegacion----->
+    <script type="text/javascript" src="js/xlsxfullmin.js"></script>
+    <script type="text/javascript" src="js/FileSaver.js"></script>
+    <link href='https://fonts.googleapis.com/css?family=Lato:400,300,700' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/css?family=Raleway:400,300,600,800,900" rel="stylesheet" type="text/css">
+
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js"></script>
+</head>
+
+<body>
+    <br>
+    <section>
+        <div class="card-group">
+            <div class="card text-white bg-dark mb-2">
+                <div class="card-header"># Nómina</div>
+                <div class="card-body">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="Nomina">Número de nómina</label>
+                            <input type="text" class="form-control" id="Nomina" maxlength="128" placeholder="####">
+                        </div>
+                        <button type="button" class="btn btn-secondary">Aplicar</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card text-white bg-dark mb-2">
+                <div class="card-header">Áreas</div>
+                <div class="card-body">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="Area">Área</label>
+                            <select id="Area" class="form-control">
+                                <option>Acabado</option>
+                                <option>Calidad</option>
+                                <option>Operacion</option>
+                                <option>Produccion</option>
+                                <option>RH</option>
+                                <option>Bravo</option>
+                                <option>Morelos</option>
+                            </select>
+                        </div>
+                        <button type="button" class="btn btn-secondary">Aplicar</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card text-white bg-dark mb-2">
+                <div class="card-header">Féchas</div>
+                <div class="card-body">
+                    <div class="col-md-4">
+                        <div  class="form-group">
+                            <label for="inputAddress2">Fecha Inicio</label>
+                            <input required type="date" id="Inicio" class="form-control"  name="Inicio" autocomplete="off">
+                        </div>
+                        <button type="button" class="btn btn-secondary">Close</button>
+                    </div>
+                    <div class="col-md-4">
+                        <div  class="form-group">
+                            <label for="inputAddress2">Fecha Final</label>
+                            <input required type="date" id="Final" class="form-control"  name="Final" autocomplete="off">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <br>
+    <br>
+    <br>
+    <!------------------------------ TABLA-------------------------------------->
+    <div class="container-fluid shadow-lg p-3 mb-5 bg-white rounded">
+        <table class="table table-condensed table-hover" id="Registros">
+            <thead>
+                <tr>
+                    <th>Aceptable</th>
+                    <th>Nombre</th>
+                    <th>Nomina</th>
+                    <th>Planta</th>
+                    <th>Motivo</th>
+                    <th>Fecha</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+        <button type="button" class="btn btn-secondary" id="ButtonDownload" data-target="#exampleModal"
+            data-toggle="modal" onclick="Excel()">Descargar</button>
+    </div>
+
+
+
+</body>
+</html>

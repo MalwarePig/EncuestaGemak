@@ -5,6 +5,8 @@ function Tabla() {
     let Area = document.getElementById("Area").value;
     var FechaLocal = moment().format("YYYY-MM-DD");
     let Horario = document.getElementById("Horario").value;
+
+
     if (condicion > 0) { //si es morelos...
         $.ajax({
             url: "/TablaM/"+ Area + " " + FechaLocal + " " + Horario,
